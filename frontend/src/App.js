@@ -17,6 +17,43 @@ const App = () => {
 
   const onMapLoad = React.useCallback((map) => {
     setMap(map);
+    // // Define the LatLng coordinates for the polygon's path.
+    // const triangleCoords = [
+    //   { lat: 10.52724489503287, lng: 76.19269249580081 },
+    //   { lat: 10.545978017231691, lng: 76.20024559638675 },
+    //   { lat: 10.545809255451871, lng: 76.2253081574219 },
+    //   { lat: 10.528088753862352, lng: 76.23732445380863 },
+    //   { lat: 10.508341852283532, lng: 76.22856972358402 },
+    //   { lat: 10.508679416769048, lng: 76.20196221015628 },
+    // ];
+    // // Construct the polygon.
+    // const bermudaTriangle = new window.google.maps.Polygon({
+    //   paths: triangleCoords,
+    //   strokeColor: "#FF0000",
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   fillColor: "#FF0000",
+    //   fillOpacity: 0.35,
+    // });
+
+    // bermudaTriangle.setMap(map);
+
+    const rectangle = new window.google.maps.Rectangle({
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.35,
+      map,
+      bounds: {
+        south: 10.511379919371432,
+        west: 76.19887230537113,
+        north: 10.544796682829698,
+        east: 76.23097298286136,
+      },
+    });
+
+    rectangle.setMap(map);
   }, []);
 
   const center = useMemo(() => ({ lat: 10.5115487, lng: 76.1882293 }), []);
@@ -25,15 +62,7 @@ const App = () => {
     drawingControl: true,
     drawingControlOptions: {
       position: map && window.google.maps.ControlPosition.TOP_CENTER,
-      drawingModes: ["polygon"],
-    },
-    polygonOptions: {
-      fillColor: "#ff0000",
-      fillOpacity: 0.5,
-      strokeWeight: 2,
-      clickable: true,
-      editable: true,
-      zIndex: 100,
+      drawingModes: ["polygon", "rectangle"],
     },
   };
 
@@ -62,10 +91,29 @@ const App = () => {
               mapContainerClassName="map-container"
               center={center}
               zoom={13}
+              onLoad={onMapLoad}
             >
-              {<DrawingManagerF
-                options={options}
-              />}
+              {
+                <DrawingManagerF
+                  options={options}
+                  onPolygonComplete={(e) => {
+                    const polygonPath = e.getPath();
+                    const polygonCoords = polygonPath.getArray();
+                    var array = [];
+                    polygonCoords.forEach((coord) => {
+                      array.push({ lat: coord.lat(), lng: coord.lng() });
+                    });
+                    console.log(JSON.stringify(array));
+                  }}
+                  onOverlayComplete={(e) => {
+                    if (e.type === "rectangle") {
+                      console.log(
+                        JSON.stringify(e.overlay.getBounds().toJSON())
+                      );
+                    }
+                  }}
+                />
+              }
             </GoogleMap>
           </div>
         </div>
