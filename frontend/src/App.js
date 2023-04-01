@@ -43,7 +43,7 @@ const App = () => {
       strokeOpacity: 0.8,
       strokeWeight: 2,
       fillColor: "#FF0000",
-      fillOpacity: 0.35,
+      fillOpacity: 0.1,
       map,
       bounds: {
         south: 10.511379919371432,
@@ -53,7 +53,76 @@ const App = () => {
       },
     });
 
+    const rectangle2 = new window.google.maps.Rectangle({
+      strokeColor: "#169100",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#169100",
+      fillOpacity: 0.1,
+      map,
+      bounds: {
+        south: 10.531970474725403,
+        west: 76.20015976569827,
+        north: 10.543615343893695,
+        east: 76.22968552253421,
+      },
+    });
+
+    const rectangle3 = new window.google.maps.Rectangle({
+      strokeColor: "#095ab0",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#095ab0",
+      fillOpacity: 0.1,
+      map,
+      bounds: {
+        south: 10.512013806076538,
+        west: 76.20024674486626,
+        north: 10.531422933419412,
+        east: 76.21024602007378,
+      },
+    });
+
     rectangle.setMap(map);
+    rectangle2.setMap(map);
+    rectangle3.setMap(map);
+
+    const transparentIcon = {
+      url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUd+SMfQAGgAJMWUN7wAAAABJRU5ErkJggg==",
+      size: new window.google.maps.Size(1, 1),
+      origin: new window.google.maps.Point(0, 0),
+      anchor: new window.google.maps.Point(0, 0),
+    };
+
+    const rectangleCenter2 = rectangle2.getBounds().getCenter();
+    const marker1 = new window.google.maps.Marker({
+      position: rectangleCenter2,
+      label: {
+        text: "SECTOR 1",
+        color: "#169100",
+        fontSize: "20px",
+        fontWeight: "bold",
+      },
+      icon: transparentIcon,
+      optimized: false,
+    });
+    
+    marker1.setMap(map);
+
+    const rectangleCenter3 = rectangle3.getBounds().getCenter();
+    const marker2 = new window.google.maps.Marker({
+      position: rectangleCenter3,
+      label: {
+        text: "SECTOR 2",
+        color: "#095ab0",
+        fontSize: "20px",
+        fontWeight: "bold",
+      },
+      icon: transparentIcon,
+      optimized: false,
+    });
+    
+    marker2.setMap(map);
   }, []);
 
   const center = useMemo(() => ({ lat: 10.5115487, lng: 76.1882293 }), []);
@@ -62,7 +131,7 @@ const App = () => {
     drawingControl: true,
     drawingControlOptions: {
       position: map && window.google.maps.ControlPosition.TOP_CENTER,
-      drawingModes: ["polygon", "rectangle"],
+      drawingModes: ["polygon", "rectangle", "marker"],
     },
   };
 
@@ -109,6 +178,10 @@ const App = () => {
                     if (e.type === "rectangle") {
                       console.log(
                         JSON.stringify(e.overlay.getBounds().toJSON())
+                      );
+                    } else if (e.type === "marker") {
+                      console.log(
+                        JSON.stringify(e.overlay.getPosition().toJSON())
                       );
                     }
                   }}
