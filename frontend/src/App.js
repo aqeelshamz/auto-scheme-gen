@@ -192,13 +192,10 @@ const App = () => {
                       e.overlay.setMap(null);
                       const marker2 = new window.google.maps.Marker({
                         position: e.overlay.getPosition(),
-                        label: {
-                          text: "Police",
-                          color: "#0000ff",
-                          fontSize: "18px",
-                          fontWeight: "bold",
+                        icon: {
+                          url: "https://cdn-icons-png.flaticon.com/512/2803/2803172.png",
+                          scaledSize: new window.google.maps.Size(30, 30),
                         },
-                        icon: null,
                         optimized: false,
                       });
 
