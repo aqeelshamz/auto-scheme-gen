@@ -1,5 +1,26 @@
 .App {
-  text-align: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.expand{
+  height: 100%;
+  width: 100%;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
 }
 
 .App-logo {
