@@ -17,6 +17,12 @@ const App = () => {
 
   const onMapLoad = React.useCallback((map) => {
     setMap(map);
+    const transparentIcon = {
+      url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUd+SMfQAGgAJMWUN7wAAAABJRU5ErkJggg==",
+      size: new window.google.maps.Size(1, 1),
+      origin: new window.google.maps.Point(0, 0),
+      anchor: new window.google.maps.Point(0, 0),
+    };
     // // Define the LatLng coordinates for the polygon's path.
     // const triangleCoords = [
     //   { lat: 10.52724489503287, lng: 76.19269249580081 },
@@ -45,6 +51,7 @@ const App = () => {
       fillColor: "#FF0000",
       fillOpacity: 0.1,
       map,
+      clickable: true,
       bounds: {
         south: 10.511379919371432,
         west: 76.19887230537113,
@@ -60,6 +67,7 @@ const App = () => {
       fillColor: "#169100",
       fillOpacity: 0.1,
       map,
+      clickable: true,
       bounds: {
         south: 10.531970474725403,
         west: 76.20015976569827,
@@ -75,6 +83,7 @@ const App = () => {
       fillColor: "#095ab0",
       fillOpacity: 0.1,
       map,
+      clickable: true,
       bounds: {
         south: 10.512013806076538,
         west: 76.20024674486626,
@@ -86,13 +95,6 @@ const App = () => {
     rectangle.setMap(map);
     rectangle2.setMap(map);
     rectangle3.setMap(map);
-
-    const transparentIcon = {
-      url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUd+SMfQAGgAJMWUN7wAAAABJRU5ErkJggg==",
-      size: new window.google.maps.Size(1, 1),
-      origin: new window.google.maps.Point(0, 0),
-      anchor: new window.google.maps.Point(0, 0),
-    };
 
     const rectangleCenter2 = rectangle2.getBounds().getCenter();
     const marker1 = new window.google.maps.Marker({
@@ -106,7 +108,7 @@ const App = () => {
       icon: transparentIcon,
       optimized: false,
     });
-    
+
     marker1.setMap(map);
 
     const rectangleCenter3 = rectangle3.getBounds().getCenter();
@@ -121,7 +123,7 @@ const App = () => {
       icon: transparentIcon,
       optimized: false,
     });
-    
+
     marker2.setMap(map);
   }, []);
 
@@ -161,6 +163,10 @@ const App = () => {
               center={center}
               zoom={13}
               onLoad={onMapLoad}
+              onClick={(ev) => {
+                console.log("latitide = ", ev.latLng.lat());
+                console.log("longitude = ", ev.latLng.lng());
+              }}
             >
               {
                 <DrawingManagerF
@@ -183,6 +189,20 @@ const App = () => {
                       console.log(
                         JSON.stringify(e.overlay.getPosition().toJSON())
                       );
+                      e.overlay.setMap(null);
+                      const marker2 = new window.google.maps.Marker({
+                        position: e.overlay.getPosition(),
+                        label: {
+                          text: "Police",
+                          color: "#0000ff",
+                          fontSize: "18px",
+                          fontWeight: "bold",
+                        },
+                        icon: null,
+                        optimized: false,
+                      });
+
+                      marker2.setMap(map);
                     }
                   }}
                 />
