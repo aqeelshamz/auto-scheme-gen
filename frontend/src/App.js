@@ -152,7 +152,6 @@ const App = () => {
 							}}
 						>
 							THRISSUR CITY POLICE
-							
 						</p>
 					</div>
 					<div className="expand">
