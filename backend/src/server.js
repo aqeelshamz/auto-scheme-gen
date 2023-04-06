@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import userRoutes from "./routes/user.js";
+import eventRoutes from "./routes/event.js";
 
 //* CONFIGURATIONS
 const app = express();
@@ -27,3 +29,9 @@ mongoose
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
   })
   .catch((error) => console.log(`${error} did not connect`));
+
+
+
+//* ROUTES
+app.use("/user", userRoutes);
+app.use("/event", eventRoutes);

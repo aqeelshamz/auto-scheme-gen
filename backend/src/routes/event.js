@@ -1,5 +1,10 @@
 import express from "express";
-import mongoose from "mongoose";
-import eventModel from "../models/eventModel";
+import EventModel from "../models/eventModel.js";
 const router = express.Router();
 
+
+router.post("/", async (req, res) => {
+    console.log(req.body);
+});
+
+export default router;
