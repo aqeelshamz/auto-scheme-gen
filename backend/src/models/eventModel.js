@@ -19,7 +19,7 @@ const eventSchema = new mongoose.Schema({
   },
   type: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'EventType'
+    required: true,
   },
   members: {
     ISH: {
