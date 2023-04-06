@@ -5,20 +5,22 @@ import {
 } from "@react-google-maps/api";
 import React, { useMemo } from "react";
 import "./Scheme.css";
+import googleApiKey from "../../utils/utils";
+import { policeIcon, transparentIcon } from "../../utils/icons";
 
 const libraries = ["drawing"];
 
 const Scheme = () => {
 	const [map, setMap] = React.useState(null);
 	const { isLoaded } = useLoadScript({
-		googleMapsApiKey: "AIzaSyBFrn8O362KFIOQWHGmcuiwjpfZsUXig-k",
+		googleMapsApiKey: googleApiKey,
 		libraries,
 	});
 
 	const onMapLoad = React.useCallback((map) => {
 		setMap(map);
-		const transparentIcon = {
-			url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUd+SMfQAGgAJMWUN7wAAAABJRU5ErkJggg==",
+		const icon = {
+			url: transparentIcon,
 			size: new window.google.maps.Size(1, 1),
 			origin: new window.google.maps.Point(0, 0),
 			anchor: new window.google.maps.Point(0, 0),
@@ -105,7 +107,7 @@ const Scheme = () => {
 				fontSize: "20px",
 				fontWeight: "bold",
 			},
-			icon: transparentIcon,
+			icon: icon,
 			optimized: false,
 		});
 
@@ -120,7 +122,7 @@ const Scheme = () => {
 				fontSize: "20px",
 				fontWeight: "bold",
 			},
-			icon: transparentIcon,
+			icon: icon,
 			optimized: false,
 		});
 
@@ -190,7 +192,7 @@ const Scheme = () => {
 											const marker2 = new window.google.maps.Marker({
 												position: e.overlay.getPosition(),
 												icon: {
-													url: "https://cdn-icons-png.flaticon.com/512/2803/2803172.png",
+													url: policeIcon,
 													scaledSize: new window.google.maps.Size(30, 30),
 												},
 												optimized: false,
