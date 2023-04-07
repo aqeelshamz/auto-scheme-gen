@@ -75,7 +75,7 @@ router
       res.status(500).json({ error: "Internal server error" });
     }
   })
-
+  //Jwt refresh handle
   .get("/verify", async (req, res) => {
     const token = req.header("auth-token");
     if (!token) {
