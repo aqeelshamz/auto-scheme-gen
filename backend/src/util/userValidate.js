@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-//validate jsonwebtoken
+//validate jsonwebtoken for requests 
 
 export default function (req, res, next) {
     const token = req.header('auth-token');
