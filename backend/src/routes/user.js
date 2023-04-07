@@ -74,6 +74,22 @@ router
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
     }
-  });
+  })
+
+  .get("/verify", async (req, res) => {
+    const token = req.header("auth-token");
+    if (!token) {
+      return res.status(401).json({ error: "Access denied" });
+    }
+
+    try {
+      const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+      const user = await UserModel.findById(decoded.id);
+      res.send(user);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  })
 
 export default router;
