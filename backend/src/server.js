@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import userRoutes from "./routes/user.js";
 import eventRoutes from "./routes/event.js";
+import validate from "./util/userValidate.js";
 
 //* CONFIGURATIONS
 const app = express();
@@ -34,4 +35,4 @@ mongoose
 
 //* ROUTES
 app.use("/user", userRoutes);
-app.use("/events", eventRoutes);
+app.use("/events", validate, eventRoutes);

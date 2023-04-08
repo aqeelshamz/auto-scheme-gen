@@ -2,9 +2,11 @@ import express from "express";
 import EventModel from "../models/eventModel.js";
 import mongoose from "mongoose";
 import sectorRoutes from "./sector.js";
+import validate from "../util/userValidate.js";
 
 const router = express.Router();
 
+// Use /sectors as a sub route.
 router.use("/sectors", sectorRoutes);
 
 // Get all events
@@ -36,7 +38,7 @@ router
   })
 
   // Create a new event
-  .post("/", async (req, res) => {
+  .post("/",  async (req, res) => {
     const { name, startDate, endDate, color, type, members, boundary } =
       req.body;
 

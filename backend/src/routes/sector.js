@@ -1,6 +1,7 @@
 import express from 'express';
 import SectorModel from "../models/sectorModel.js";
 
+
 const router = express.Router();
 
 // CREATE a new sector
