@@ -1,9 +1,11 @@
 import express from "express";
 import EventModel from "../models/eventModel.js";
 import mongoose from "mongoose";
+import sectorRoutes from "./sector.js";
 
 const router = express.Router();
 
+router.use("/sectors", sectorRoutes);
 
 // Get all events
 router
