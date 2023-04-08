@@ -26,7 +26,7 @@ const Register = (props) => {
 					</p>
 				</div>
 				<h2>Register</h2>
-				<form classname="register-form" onSubmit={handleSubmit}>
+				<form className="register-form" onSubmit={handleSubmit}>
 					{/* <label htmlFor="name">Name</label> */}
 					<input
 						value={name}
