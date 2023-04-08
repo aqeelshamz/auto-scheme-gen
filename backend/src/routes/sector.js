@@ -19,7 +19,6 @@ router.post('/', async (req, res) => {
 .get('/', async (req, res) => {
   try {
     const sectors = await SectorModel.find();
-    console.log(sectors);
     res.json(sectors);
   } catch (err) {
     console.error(err);
