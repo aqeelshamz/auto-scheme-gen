@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = (props) => {
 	const [email, setEmail] = useState("");
 	const [pass, setPass] = useState("");
 
+	const navigate = useNavigate();
+	
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(email);
@@ -47,7 +50,7 @@ const Login = (props) => {
 					<button type="submit">Log In</button>
 					<button
 						className="link-btn"
-						onClick={() => props.onFormSwitch("register")}
+						onClick={() => navigate("/register")}
 					>
 						Don't have an account? Register
 					</button>

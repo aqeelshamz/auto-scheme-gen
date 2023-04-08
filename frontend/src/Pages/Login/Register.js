@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Register = (props) => {
 	const [email, setEmail] = useState("");
 	const [pass, setPass] = useState("");
 	const [name, setName] = useState("");
+
+	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -25,7 +28,7 @@ const Register = (props) => {
 						THRISSUR CITY POLICE
 					</p>
 				</div>
-				<h2>Register</h2>
+				<h2 sty>Register</h2>
 				<form className="register-form" onSubmit={handleSubmit}>
 					{/* <label htmlFor="name">Name</label> */}
 					<input
@@ -57,7 +60,7 @@ const Register = (props) => {
 					<button type="submit">Register</button>
 					<button
 						className="link-btn"
-						onClick={() => props.onFormSwitch("login")}
+						onClick={() => navigate('/login')}
 					>
 						Already have an account? Log In
 					</button>
