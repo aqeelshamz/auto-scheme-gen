@@ -1,4 +1,16 @@
-#button {
+.home {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  color: black;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(79deg, #7439db, #c66fbc 48%, #f79440);
+}
+
+/* #button {
     color: black;
     cursor: pointer;
     background: white;
@@ -9,4 +21,4 @@
     font-size: 1.2rem;
     font-weight: 700;
     margin-top: 30px;
-  }
+  } */
