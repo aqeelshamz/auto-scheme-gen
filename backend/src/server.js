@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import userRoutes from "./routes/user.js";
 import eventRoutes from "./routes/event.js";
+import sectorRoutes from "./routes/sector.js";
 
 //* CONFIGURATIONS
 const app = express();
@@ -34,4 +35,5 @@ mongoose
 
 //* ROUTES
 app.use("/user", userRoutes);
-app.use("/event", eventRoutes);
+app.use("/events", eventRoutes);
+app.use("/events/sectors", sectorRoutes);

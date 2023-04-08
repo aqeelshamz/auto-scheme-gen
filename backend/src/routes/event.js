@@ -1,6 +1,9 @@
 import express from "express";
 import EventModel from "../models/eventModel.js";
+import mongoose from "mongoose";
+
 const router = express.Router();
+
 
 // Get all events
 router
@@ -36,6 +39,14 @@ router
       req.body;
 
     try {
+
+      // Check if an event with the same name already exists
+      const existingEvent = await EventModel.findOne({ name });
+
+      if (existingEvent) {
+        return res.status(400).json({ error: "An event with the same name already exists" });
+      }
+
       const event = new EventModel({
         name,
         startDate,
@@ -55,48 +66,49 @@ router
   })
 
   // Update an existing event
-  .put("/events/:id", async (req, res) => {
+  .put("/:id", async (req, res) => {
     const eventId = req.params.id;
-    const { name, startDate, endDate, color, type, members, boundary } =
-      req.body;
 
     try {
-      const event = await Event.findById(eventId);
+      const event = await EventModel.findByIdAndUpdate(
+        eventId,
+        req.body,
+        { new: true }
+      );
       if (!event) {
         return res.status(404).json({ error: "Event not found" });
       }
-      event.name = name;
-      event.startDate = startDate;
-      event.endDate = endDate;
-      event.color = color;
-      event.type = type;
-      event.members = members;
-      event.boundary = boundary;
-
-      await event.save(); //update new event data in the database
       res.json(event);
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
     }
+
   })
+
 
   // Delete an event
   .delete("/:id", async (req, res) => {
     const eventId = req.params.id;
 
     try {
-      const event = await Event.findById(eventId);
+
+      if (!mongoose.isValidObjectId(eventId)) {
+        return res.status(404).json({ error: "object id is not valid" });
+      }
+
+      const event = await EventModel.findByIdAndDelete(eventId);
+
       if (!event) {
         return res.status(404).json({ error: "Event not found" });
       }
-      await event.delete();
+
       res.json({ message: "Event deleted" });
+
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
     }
   });
 
-
-  export default router;
+export default router;

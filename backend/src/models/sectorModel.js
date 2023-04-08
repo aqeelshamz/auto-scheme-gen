@@ -13,13 +13,13 @@ const sectorSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true
   },
-  eventId: {
-    type: mongoose.Schema.Types.ObjectId,   // ref to Event model id
-    ref: 'Event',                           // ref to Event model
+  eventID: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true
   }
 });
 
-const SectorModel = mongoose.model('Sector', sectorSchema);
 
-module.exports = SectorModel;
+const Sector = mongoose.model('Sector', sectorSchema);
+
+export default Sector;

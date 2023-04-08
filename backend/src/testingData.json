@@ -1,0 +1,42 @@
+{
+  "signupData": {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "password123",
+    "type": 1,
+    "profilePic": "https://example.com/johndoe.jpg"
+  },
+
+  "loginData": {
+    "email": "johndoe@example.com",
+    "password": "password123"
+  },
+
+  "eventData": {
+    "name": "My Event",
+    "startDate": "2023-05-01T12:00:00.000Z",
+    "endDate": "2023-05-03T12:00:00.000Z",
+    "color": "blue",
+    "type": "6189555e5c5b5a5a5f5c5a5b",
+    "members": {
+      "ISH": 10,
+      "SI": 5,
+      "CPO": 3,
+      "ICPO": 2
+    },
+    "boundary": {
+      "type": 1,
+      "data": {
+        "coordinates": [
+          [
+            [-73.9978, 40.7209],
+            [-73.9913, 40.7214],
+            [-73.9909, 40.7188],
+            [-73.9974, 40.7184],
+            [-73.9978, 40.7209]
+          ]
+        ]
+      }
+    }
+  }
+}
