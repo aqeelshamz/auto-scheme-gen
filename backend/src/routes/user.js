@@ -9,18 +9,18 @@ router
   //Signup handle
   .post("/signup", async (req, res) => {
     console.log(req.body);
-    const { name, email, password, type, profilePic } = req.body;
+    const { name, email, password } = req.body;
 
     try {
       // Check if user already exists
       const existingUser = await UserModel.findOne({ email: email });
       if (existingUser) {
         return res.status(400).json({ error: "User already exists" });
-      } else if (!name || !email || !password || !type) {
+      } else if (!name || !email || !password) {
         return res.status(400).json({ error: "All fields are required" });
-      } else if (![0, 1, 2].includes(type)) {
-        return res.status(400).json({ error: "Invalid user type" });
-      }
+      }// } else if (![0, 1, 2].includes(type)) {
+      //   return res.status(400).json({ error: "Invalid user type" });
+      // }
 
       // Create new user and save to database
       const hashedPass = await bcrypt.hash(password, 10);
@@ -28,8 +28,8 @@ router
         name,
         email,
         password: hashedPass,
-        type,
-        profilePic,
+        type: 0,
+        profilePic: "",
       });
       await user.save();
       res.send(user);
