@@ -11,13 +11,19 @@
 }
 .login .auth-form-container,
 .login .login-form,
-.login .register-form {
+.login .signup-form {
   display: flex;
   flex-direction: column;
 }
+
+h2 h1 {
+  font-size: large;
+  font-weight: bolder;
+}
+
 @media screen and (min-width: 600px) {
   .login .auth-form-container {
-    padding: 5rem;
+    padding: 2rem 5rem;
     border: 1px solid white;
     border-radius: 10px;
     background-color: #f0f0f0;
@@ -25,7 +31,7 @@
   }
 }
 .login label {
-  text-align: left;
+  text-align: center;
   padding: 0.25rem 0;
 }
 .login input {
@@ -93,3 +99,52 @@
     transform: rotate(360deg);
   }
 }/*# sourceMappingURL=Login.css.map */
+
+/* ---------- */
+
+
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+}

@@ -38,5 +38,15 @@
         ]
       }
     }
+  },
+
+  "sectorData": {
+    "name": "Sector D",
+    "color": "#ff0000",
+    "data": {
+      "description": "This is sector D",
+      "capacity": 100
+    },
+    "eventId": "643123105882fa93c58d254c"
   }
 }

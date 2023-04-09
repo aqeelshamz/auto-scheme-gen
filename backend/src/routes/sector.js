@@ -1,6 +1,7 @@
 import express from 'express';
 import SectorModel from "../models/sectorModel.js";
 
+
 const router = express.Router();
 
 // CREATE a new sector
@@ -19,7 +20,6 @@ router.post('/', async (req, res) => {
 .get('/', async (req, res) => {
   try {
     const sectors = await SectorModel.find();
-    console.log(sectors);
     res.json(sectors);
   } catch (err) {
     console.error(err);

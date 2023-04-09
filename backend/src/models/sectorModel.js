@@ -13,8 +13,9 @@ const sectorSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true
   },
-  eventID: {
-    type: mongoose.Schema.Types.ObjectId,
+  eventId: {
+    type: mongoose.Schema.Types.ObjectId,   // ref to Event model id
+    ref: 'Event',                           // ref to Event model
     required: true
   }
 });
