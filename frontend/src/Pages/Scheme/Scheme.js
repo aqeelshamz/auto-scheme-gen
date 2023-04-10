@@ -5,7 +5,7 @@ import {
 } from "@react-google-maps/api";
 import React, { useMemo } from "react";
 import "./Scheme.css";
-import googleApiKey from "../../utils/utils";
+import {googleApiKey} from "../../utils/utils";
 import { policeIcon, transparentIcon } from "../../utils/icons";
 
 const libraries = ["drawing"];

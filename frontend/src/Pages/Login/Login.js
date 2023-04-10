@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import axios from ".../api/axios";
 import "./Login.css";
 
 const LOGIN_URL = "/auth";
 
 const Login = () => {
-	const { setAuth } = useContext(AuthContext);
+	// const { setAuth } = useContext(AuthContext);
 
 	const emailRef = useRef();
 	const errRef = useRef();
@@ -30,35 +28,35 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		try {
-			const response = await axios.post(
-				LOGIN_URL,
-				JSON.stringify({ email, pass }),
-				{
-					headers: { "Content-Type": "application/json" },
-					withCredentials: true,
-				}
-			);
-			console.log(JSON.stringify(response?.data));
-			//console.log(JSON.stringify(response?.data));
-			const accessToken = response?.data?.accessToken;
-			const roles = response?.data?.roles;
-			setAuth({ email, pass, roles, accessToken });
-			setEmail("");
-			setPass("");
-			setSuccess(true);
-		} catch (err) {
-			if (!err?.response) {
-				setErrMsg('No Server Response');
-			} else if (err?.response?.status === 400) {
-				setErrMsg('Missing email or password');
-			} else if (err?.response?.status === 401) {
-				setErrMsg('Unauthorized');
-			} else {
-				setErrMsg('Login Failed');
-			}
-			errRef.current.focus();
-		}
+		// try {
+		// 	const response = await axios.post(
+		// 		LOGIN_URL,
+		// 		JSON.stringify({ email, pass }),
+		// 		{
+		// 			headers: { "Content-Type": "application/json" },
+		// 			withCredentials: true,
+		// 		}
+		// 	);
+		// 	console.log(JSON.stringify(response?.data));
+		// 	//console.log(JSON.stringify(response?.data));
+		// 	const accessToken = response?.data?.accessToken;
+		// 	const roles = response?.data?.roles;
+		// 	setAuth({ email, pass, roles, accessToken });
+		// 	setEmail("");
+		// 	setPass("");
+		// 	setSuccess(true);
+		// } catch (err) {
+			// if (!err?.response) {
+			// 	setErrMsg('No Server Response');
+			// } else if (err?.response?.status === 400) {
+			// 	setErrMsg('Missing email or password');
+			// } else if (err?.response?.status === 401) {
+			// 	setErrMsg('Unauthorized');
+			// } else {
+			// 	setErrMsg('Login Failed');
+			// }
+			// errRef.current.focus();
+		// }
 	};
 
 	return (

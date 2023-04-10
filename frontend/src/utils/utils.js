@@ -1,4 +1,8 @@
-const googleApiKey = "AIzaSyBFrn8O362KFIOQWHGmcuiwjpfZsUXig-k";
-{/*const serverURL = "http://localhost:6001";*/}
+import axios from "axios";
 
-export default googleApiKey;
+const googleApiKey = "AIzaSyBFrn8O362KFIOQWHGmcuiwjpfZsUXig-k";
+const api = axios.create({
+    baseURL: "http://localhost:6001",
+});
+
+export { api, googleApiKey };
