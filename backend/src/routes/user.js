@@ -2,13 +2,26 @@ import express from "express";
 import UserModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import Joi from "joi";
 
 const router = express.Router();
+
+const signupSchema = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+});
 
 router
   //Signup handle
   .post("/signup", async (req, res) => {
-    console.log(req.body);
+    //validate user input using joi
+    const { error } = signupSchema.validate(req.body);
+
+    if (error) {
+      return res.status(400).json({ error: error.details[0].message });
+    }
+
     const { name, email, password } = req.body;
 
     try {
@@ -18,7 +31,7 @@ router
         return res.status(400).json({ error: "User already exists" });
       } else if (!name || !email || !password) {
         return res.status(400).json({ error: "All fields are required" });
-      }// } else if (![0, 1, 2].includes(type)) {
+      } // } else if (![0, 1, 2].includes(type)) {
       //   return res.status(400).json({ error: "Invalid user type" });
       // }
 
@@ -32,7 +45,7 @@ router
         profilePic: "",
       });
       await user.save();
-      res.json({msg: "OK"});
+      res.json({ msg: "OK" });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
@@ -63,13 +76,17 @@ router
       };
 
       // Exclude password and email from response
-      const { password: userPassword, email : userEmail , ...userData } = user._doc;
+      const {
+        password: userPassword,
+        email: userEmail,
+        ...userData
+      } = user._doc;
 
       const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
         expiresIn: "5h",
       });
 
-      res.send({ user: userData , token});
+      res.send({ user: userData, token });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
@@ -90,6 +107,6 @@ router
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
     }
-  })
+  });
 
 export default router;
