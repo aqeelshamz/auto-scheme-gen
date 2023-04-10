@@ -68,14 +68,12 @@ const Login = () => {
 							<p>
 								Don't have an account?
 								<br />
-								<span className="line">
 									<button
 										className="link-btn"
 										onClick={() => navigate("/signup")}
 									>
 										Sign Up
 									</button>
-								</span>
 							</p>
 						</form>
 					</div>

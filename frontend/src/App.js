@@ -3,6 +3,7 @@ import Scheme from "./Pages/Scheme/Scheme";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Login/Signup";
+import PDFLink from "./Pages/Report/PDFLink";
 
 const App = () => {
   if (
@@ -14,17 +15,18 @@ const App = () => {
   }
 
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Scheme />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/home" element={<Home />} />
-        </Routes>
-      </Router>
-    </>
-  );
+		<>
+			<Router>
+				<Routes>
+					<Route exact path="/" element={<Scheme />} />
+					<Route exact path="/login" element={<Login />} />
+					<Route exact path="/signup" element={<Signup />} />
+					<Route exact path="/home" element={<Home />} />
+					<Route exact path="/report" element={<PDFLink />} />
+				</Routes>
+			</Router>
+		</>
+	);
 };
 
 export default App;

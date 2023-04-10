@@ -7,7 +7,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [name, setName] = useState("");
-
+  
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -76,11 +76,9 @@ const Signup = () => {
           <p>
             Already have an account?
             <br />
-            <span className="line">
               <button className="link-btn" onClick={() => navigate("/login")}>
                 Log In
               </button>
-            </span>
           </p>
         </form>
       </div>
