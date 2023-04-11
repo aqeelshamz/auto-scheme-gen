@@ -3,21 +3,23 @@ import {
 	GoogleMap,
 	useLoadScript,
 } from "@react-google-maps/api";
-import React, { useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import "./Scheme.css";
-import {googleApiKey} from "../../utils/utils";
+import { googleApiKey } from "../../utils/utils";
 import { policeIcon, transparentIcon } from "../../utils/icons";
+import SchemeReportModal from "../../Components/SchemeReportModal";
 
 const libraries = ["drawing"];
 
 const Scheme = () => {
-	const [map, setMap] = React.useState(null);
+	const [map, setMap] = useState(null);
+	const [schemeModal, setSchemeModal] = useState(false)
 	const { isLoaded } = useLoadScript({
 		googleMapsApiKey: googleApiKey,
 		libraries,
 	});
 
-	const onMapLoad = React.useCallback((map) => {
+	const onMapLoad = useCallback((map) => {
 		setMap(map);
 		const icon = {
 			url: transparentIcon,
@@ -204,6 +206,11 @@ const Scheme = () => {
 								/>
 							}
 						</GoogleMap>
+					</div>
+					<div className="column" style={{ padding: "15px" }}>
+						<button onClick={() => {setSchemeModal(true)}}>Finish</button>
+
+						{schemeModal && <SchemeReportModal closeModal={setSchemeModal} />}
 					</div>
 				</div>
 			)}

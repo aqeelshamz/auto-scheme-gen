@@ -1,0 +1,126 @@
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 700px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modalContainer .title {
+  font-weight: 700;
+  display: inline-block;
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 10px;
+  flex-direction: column;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.modalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer .footer button {
+  width: auto;
+  height: 45px;
+  margin: 10px 10px;
+  border: none;
+  padding: 5px 5px;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.modalContainer .new-event {
+  background-color: #afafaf;
+  border: none;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #dfd7ee;
+  margin: 0.5rem 0 0 0;
+}
+
+.modalContainer .new-event label {
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+.modalContainer .new-event input {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
+.modalContainer .new-event button {
+  background-color: #282c34;
+  border: none;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #dfd7ee;
+  margin: 0.5rem 0 0 0;
+}
+
+.new-event {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventDetails {
+  flex-direction: column;
+  position: left
+}
+
+#cancelBtn {
+  background-color: crimson;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}

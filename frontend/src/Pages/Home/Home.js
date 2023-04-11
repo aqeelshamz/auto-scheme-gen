@@ -1,7 +1,10 @@
+import { useState } from "react";
 import "./Cards.css";
 import CardItem from "./CardItem";
+import NewEventModal from "../../Components/NewEventModal";
 
 function Home() {
+	const [eventModal, setEventModal] = useState(false);
 	return (
 		<div className="cards">
 			<div className="column" style={{ paddingBottom: "20px" }}>
@@ -15,6 +18,17 @@ function Home() {
 					THRISSUR CITY POLICE
 				</p>
 			</div>
+
+			{/* New Event Modal */}
+			<button
+				className="openModalBtn"
+				onClick={() => {
+					setEventModal(true);
+				}}
+			>
+				New Event
+			</button>
+			{eventModal && <NewEventModal closeModal={setEventModal} />}
 
 			<div className="cards__container">
 				<div className="cards__wrapper">
