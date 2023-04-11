@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./Cards.css";
 import CardItem from "./CardItem";
-import NewEventModal from "../../Components/NewEventModal";
+import Modal from "./Modal";
 
 function Home() {
-	const [eventModal, setEventModal] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div className="cards">
 			<div className="column" style={{ paddingBottom: "20px" }}>
@@ -18,18 +18,12 @@ function Home() {
 					THRISSUR CITY POLICE
 				</p>
 			</div>
-
-			{/* New Event Modal */}
-			<button
-				className="openModalBtn"
-				onClick={() => {
-					setEventModal(true);
-				}}
-			>
-				New Event
-			</button>
-			{eventModal && <NewEventModal closeModal={setEventModal} />}
-
+			<div>
+				<button onClick={() => setIsOpen(true)}>New Event</button>
+				<Modal open={isOpen} onClose={() => setIsOpen(false)}>
+					This is a modal content
+				</Modal>
+			</div>
 			<div className="cards__container">
 				<div className="cards__wrapper">
 					<ul className="cards__items">
@@ -45,7 +39,7 @@ function Home() {
 					</ul>
 				</div>
 			</div>
-			<></>
+			<br />
 			<h3>Recent events</h3>
 			<div className="cards__container">
 				<div className="cards__wrapper">
@@ -72,7 +66,7 @@ function Home() {
 						<CardItem />
 					</ul>
 				</div>
-				<></>
+				<br />
 				<h3>All events</h3>
 				<div className="cards__container">
 					<div className="cards__wrapper">

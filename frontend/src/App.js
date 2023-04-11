@@ -3,18 +3,17 @@ import Scheme from "./Pages/Scheme/Scheme";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Login/Signup";
-import PDFLink from "./Pages/Report/PDFLink";
 
 const App = () => {
-  if (
-    !localStorage.getItem("token") &&
-    window.location.pathname !== "/login" &&
-    window.location.pathname !== "/signup"
-  ) {
-    window.location.href = "/login";
-  }
+	if (
+		!localStorage.getItem("token") &&
+		window.location.pathname !== "/login" &&
+		window.location.pathname !== "/signup"
+	) {
+		window.location.href = "/login";
+	}
 
-  return (
+	return (
 		<>
 			<Router>
 				<Routes>
@@ -22,7 +21,6 @@ const App = () => {
 					<Route exact path="/login" element={<Login />} />
 					<Route exact path="/signup" element={<Signup />} />
 					<Route exact path="/home" element={<Home />} />
-					<Route exact path="/report" element={<PDFLink />} />
 				</Routes>
 			</Router>
 		</>

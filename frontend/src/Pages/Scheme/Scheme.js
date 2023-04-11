@@ -7,13 +7,13 @@ import { useState, useMemo, useCallback } from "react";
 import "./Scheme.css";
 import { googleApiKey } from "../../utils/utils";
 import { policeIcon, transparentIcon } from "../../utils/icons";
-import SchemeReportModal from "../../Components/SchemeReportModal";
+import Modal from "./Modal";
 
 const libraries = ["drawing"];
 
 const Scheme = () => {
 	const [map, setMap] = useState(null);
-	const [schemeModal, setSchemeModal] = useState(false)
+	const [isOpen, setIsOpen] = useState(false);
 	const { isLoaded } = useLoadScript({
 		googleMapsApiKey: googleApiKey,
 		libraries,
@@ -208,9 +208,30 @@ const Scheme = () => {
 						</GoogleMap>
 					</div>
 					<div className="column" style={{ padding: "15px" }}>
-						<button onClick={() => {setSchemeModal(true)}}>Finish</button>
-
-						{schemeModal && <SchemeReportModal closeModal={setSchemeModal} />}
+						<button onClick={() => setIsOpen(true)}>
+							Finish
+						</button>
+						<Modal open={isOpen} onClose={() => setIsOpen(false)}>
+							This is a modal content
+							
+							{/* <div className="title">Event Scheme</div>
+							<div className="eventDetails">
+								<div>Thrissur Pooram</div>
+								<div>1 May 2023 - 3 May 2023</div>
+							</div>
+							<br />
+							<div className="title">
+								Sectors & Members
+								<div className="column">Sector A</div>
+								<div className="column">Sector B</div>
+								<div className="column">Sector C</div>
+							</div>
+							<div className="body"></div>
+							<div className="footer">
+								<button>Download in PDF</button>
+								<button>Download in XLSX</button>
+							</div> */}
+						</Modal>
 					</div>
 				</div>
 			)}

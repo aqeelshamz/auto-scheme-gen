@@ -16,4 +16,5 @@ const PDFLink = ({ data }) => {
 		</div>
 	);
 };
+
 export default PDFLink;
