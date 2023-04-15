@@ -7,7 +7,7 @@ import { useState, useMemo, useCallback } from "react";
 import "./Scheme.css";
 import { googleApiKey } from "../../utils/utils";
 import { policeIcon, transparentIcon } from "../../utils/icons";
-import Modal from "./Modal";
+import SchemeModal from "./SchemeModal";
 
 const libraries = ["drawing"];
 
@@ -208,13 +208,11 @@ const Scheme = () => {
 						</GoogleMap>
 					</div>
 					<div className="column" style={{ padding: "15px" }}>
-						<button onClick={() => setIsOpen(true)}>
-							Finish
-						</button>
-						<Modal open={isOpen} onClose={() => setIsOpen(false)}>
-							This is a modal content
+						
+						<SchemeModal />
 							
-							{/* <div className="title">Event Scheme</div>
+							{/* Modal Content
+							<div className="title">Event Scheme</div>
 							<div className="eventDetails">
 								<div>Thrissur Pooram</div>
 								<div>1 May 2023 - 3 May 2023</div>
@@ -231,7 +229,6 @@ const Scheme = () => {
 								<button>Download in PDF</button>
 								<button>Download in XLSX</button>
 							</div> */}
-						</Modal>
 					</div>
 				</div>
 			)}

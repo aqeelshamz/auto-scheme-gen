@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Cards.css";
 import CardItem from "./CardItem";
-import Modal from "./Modal";
+import HomeModal from "./HomeModal";
 
 function Home() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -20,9 +20,7 @@ function Home() {
 			</div>
 			<div>
 				<button onClick={() => setIsOpen(true)}>New Event</button>
-				<Modal open={isOpen} onClose={() => setIsOpen(false)}>
-					This is a modal content
-				</Modal>
+				<HomeModal />
 			</div>
 			<div className="cards__container">
 				<div className="cards__wrapper">

@@ -5,13 +5,13 @@ import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Login/Signup";
 
 const App = () => {
-	if (
+	{/* if (
 		!localStorage.getItem("token") &&
 		window.location.pathname !== "/login" &&
 		window.location.pathname !== "/signup"
 	) {
 		window.location.href = "/login";
-	}
+	} */}
 
 	return (
 		<>
