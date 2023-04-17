@@ -7,7 +7,6 @@ function Home() {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div className="cards">
-
 			<div>
 				<button onClick={() => setIsOpen(true)}>New Event</button>
 				<HomeModal />

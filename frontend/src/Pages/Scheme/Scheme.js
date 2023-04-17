@@ -8,6 +8,7 @@ import "./Scheme.css";
 import { googleApiKey } from "../../utils/utils";
 import { policeIcon, transparentIcon } from "../../utils/icons";
 import SchemeModal from "./SchemeModal";
+import Navbar from "../../components/Navbar/Navbar";
 
 const libraries = ["drawing"];
 
@@ -147,7 +148,7 @@ const Scheme = () => {
 				<div className="column expand"></div>
 			) : (
 				<div className="column expand">
-					<div className="column" style={{ padding: "15px" }}>
+					{/*<div className="column" style={{ padding: "15px" }}>
 						<p style={{ fontSize: "1.8rem", fontWeight: "800" }}>SchemeGen</p>
 						<p
 							style={{
@@ -157,8 +158,9 @@ const Scheme = () => {
 						>
 							THRISSUR CITY POLICE
 						</p>
-					</div>
+						</div> */}
 					<div className="expand">
+						<Navbar />
 						<GoogleMap
 							mapContainerClassName="map-container"
 							center={center}
@@ -208,7 +210,6 @@ const Scheme = () => {
 						</GoogleMap>
 					</div>
 					<div className="column" style={{ padding: "15px" }}>
-
 						<SchemeModal />
 
 						{/* Modal Content
