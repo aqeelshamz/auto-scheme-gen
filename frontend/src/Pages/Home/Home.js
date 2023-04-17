@@ -7,17 +7,7 @@ function Home() {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div className="cards">
-			<div className="column" style={{ paddingBottom: "20px" }}>
-				<p style={{ fontSize: "2rem", fontWeight: "800" }}>SchemeGen</p>
-				<p
-					style={{
-						fontSize: "0.8rem",
-						fontWeight: "500",
-					}}
-				>
-					THRISSUR CITY POLICE
-				</p>
-			</div>
+
 			<div>
 				<button onClick={() => setIsOpen(true)}>New Event</button>
 				<HomeModal />

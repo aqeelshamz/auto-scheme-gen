@@ -142,7 +142,7 @@ const Scheme = () => {
 	};
 
 	return (
-		<div className="App">
+		<div className="App mt-20">
 			{!isLoaded ? (
 				<div className="column expand"></div>
 			) : (
@@ -208,10 +208,10 @@ const Scheme = () => {
 						</GoogleMap>
 					</div>
 					<div className="column" style={{ padding: "15px" }}>
-						
+
 						<SchemeModal />
-							
-							{/* Modal Content
+
+						{/* Modal Content
 							<div className="title">Event Scheme</div>
 							<div className="eventDetails">
 								<div>Thrissur Pooram</div>
