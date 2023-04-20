@@ -10,7 +10,14 @@ import { policeIcon, transparentIcon } from "../../utils/icons";
 import SchemeModal from "./SchemeModal";
 import Navbar from "../../components/Navbar/Navbar";
 
+
+// react icons
+import { BsExclamationCircle } from 'react-icons/bs';
+import { IoReturnUpBack } from 'react-icons/io5';
+import { GoCheck } from 'react-icons/go';
+
 const libraries = ["drawing"];
+
 
 const Scheme = () => {
 	const [map, setMap] = useState(null);
@@ -139,100 +146,91 @@ const Scheme = () => {
 		drawingControlOptions: {
 			position: map && window.google.maps.ControlPosition.TOP_CENTER,
 			drawingModes: ["polygon", "rectangle", "marker"],
+			buttonSize: 40, // Set the size of the drawing control button
 		},
 	};
 
 	return (
-		<div className="App mt-20">
-			{!isLoaded ? (
-				<div className="column expand"></div>
-			) : (
-				<div className="column expand">
-					{/*<div className="column" style={{ padding: "15px" }}>
-						<p style={{ fontSize: "1.8rem", fontWeight: "800" }}>SchemeGen</p>
-						<p
-							style={{
-								fontSize: "0.8rem",
-								fontWeight: "500",
-							}}
-						>
-							THRISSUR CITY POLICE
-						</p>
-						</div> */}
-					<div className="expand">
-						<Navbar />
-						<GoogleMap
-							mapContainerClassName="map-container"
-							center={center}
-							zoom={13}
-							onLoad={onMapLoad}
-							onClick={(ev) => {
-								console.log("latitide = ", ev.latLng.lat());
-								console.log("longitude = ", ev.latLng.lng());
-							}}
-						>
-							{
-								<DrawingManagerF
-									options={options}
-									onPolygonComplete={(e) => {
-										const polygonPath = e.getPath();
-										const polygonCoords = polygonPath.getArray();
-										var array = [];
-										polygonCoords.forEach((coord) => {
-											array.push({ lat: coord.lat(), lng: coord.lng() });
-										});
-										console.log(JSON.stringify(array));
-									}}
-									onOverlayComplete={(e) => {
-										if (e.type === "rectangle") {
-											console.log(
-												JSON.stringify(e.overlay.getBounds().toJSON())
-											);
-										} else if (e.type === "marker") {
-											console.log(
-												JSON.stringify(e.overlay.getPosition().toJSON())
-											);
-											e.overlay.setMap(null);
-											const marker2 = new window.google.maps.Marker({
-												position: e.overlay.getPosition(),
-												icon: {
-													url: policeIcon,
-													scaledSize: new window.google.maps.Size(30, 30),
-												},
-												optimized: false,
+		<div className="max-h-screen overflow-hidden">	<Navbar />
+			<div className=" mt-24 ">
+				{!isLoaded ? (
+					<div className=" h-full"></div>
+				) : (
+					<div className=" h-full">
+
+						<div className="h-screen">
+
+							<GoogleMap
+								mapContainerClassName="map-container"
+								center={center}
+								zoom={13}
+								onLoad={onMapLoad}
+								onClick={(ev) => {
+									console.log("latitide = ", ev.latLng.lat());
+									console.log("longitude = ", ev.latLng.lng());
+								}}
+							>
+								{
+									<DrawingManagerF
+										options={options}
+										onPolygonComplete={(e) => {
+											const polygonPath = e.getPath();
+											const polygonCoords = polygonPath.getArray();
+											var array = [];
+											polygonCoords.forEach((coord) => {
+												array.push({ lat: coord.lat(), lng: coord.lng() });
 											});
+											console.log(JSON.stringify(array));
+										}}
+										onOverlayComplete={(e) => {
+											if (e.type === "rectangle") {
+												console.log(
+													JSON.stringify(e.overlay.getBounds().toJSON())
+												);
+											} else if (e.type === "marker") {
+												console.log(
+													JSON.stringify(e.overlay.getPosition().toJSON())
+												);
+												e.overlay.setMap(null);
+												const marker2 = new window.google.maps.Marker({
+													position: e.overlay.getPosition(),
+													icon: {
+														url: policeIcon,
+														scaledSize: new window.google.maps.Size(30, 30),
+													},
+													optimized: false,
+												});
 
-											marker2.setMap(map);
-										}
-									}}
-								/>
-							}
-						</GoogleMap>
-					</div>
-					<div className="column" style={{ padding: "15px" }}>
-						<SchemeModal />
+												marker2.setMap(map);
+											}
+										}}
+									/>
+								}
+							</GoogleMap>
+						</div>
 
-						{/* Modal Content
-							<div className="title">Event Scheme</div>
-							<div className="eventDetails">
-								<div>Thrissur Pooram</div>
-								<div>1 May 2023 - 3 May 2023</div>
-							</div>
-							<br />
-							<div className="title">
-								Sectors & Members
-								<div className="column">Sector A</div>
-								<div className="column">Sector B</div>
-								<div className="column">Sector C</div>
-							</div>
-							<div className="body"></div>
-							<div className="footer">
-								<button>Download in PDF</button>
-								<button>Download in XLSX</button>
-							</div> */}
 					</div>
+				)}
+			</div>
+			<div class="fixed w-[550px] text-lg pb-16 bottom-0 left-1/2 transform -translate-x-1/2">
+				<div class="flex  justify-between items-center">
+					<button class=" w-[50px] h-[50px] flex justify-center items-center left-434 top-752 bg-white border-2 border-black shadow-md rounded-full box-border">
+						<IoReturnUpBack size={25} className="text-blue-950" />
+					</button>
+
+					<button class=" w-[267px] h-[45px] flex justify-center items-center bg-[#FFF0C9] text-[#C86000] left-507 top-754 border-2 border-[#C86000] shadow-md rounded-lg box-border font-semibold">
+						<BsExclamationCircle size={25} className="mr-3" /> Draw Event Border
+					</button>
+
+
+					<div class="w-[181px] h-[45px] flex justify-center items-center left-791 top-754 bg-blue-900 shadow-md rounded-lg text-white font-semibold ">
+						<button className="mr-3 flex justify-center items-center">
+							<GoCheck size={25} /> <span className="ml-3" >Finish</span>
+						</button>
+					</div>
+
 				</div>
-			)}
+			</div>
 		</div>
 	);
 };
