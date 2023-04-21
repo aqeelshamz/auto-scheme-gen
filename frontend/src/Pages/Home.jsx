@@ -1,4 +1,5 @@
 import EventCard from "../components/EventCard/EventCard";
+import CreateEventModel from "../components/Modal/CreateEventModel";
 import Navbar from "../components/Navbar/Navbar";
 
 function Home() {
@@ -73,7 +74,7 @@ function Home() {
 	];
 
 	return (
-		<div className="">
+		<div className="overflow-hidden">
 			<Navbar />
 			<div className="min-h-screen mt-24  w-full">
 				{/* search bar start */}
@@ -156,6 +157,9 @@ function Home() {
 					</>
 
 					{/*Recent event cards end */}
+
+
+					<CreateEventModel />
 				</div>
 			</div>
 		</div>
