@@ -1,10 +1,13 @@
 # Automatic Scheme Generation
+<br>
 
 | **Leader**  | Aqeel       |
 |-------------|-------------|
 | **Members** | Abdul Majid |
 |             | Anurag P    |
 |             | Sai Nath A  |
+
+<br>
 
 ## Abstract
 

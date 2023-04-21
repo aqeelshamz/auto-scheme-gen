@@ -3,7 +3,6 @@ import Scheme from "./Pages/Scheme/Scheme";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home";
 import Signup from "./Pages/Login/Signup";
-import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
 	{
@@ -19,7 +18,6 @@ const App = () => {
 	return (
 		<>
 			<Router>
-				
 				<Routes>
 					<Route exact path="/" element={<Scheme />} />
 					<Route exact path="/login" element={<Login />} />

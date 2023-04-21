@@ -10,14 +10,12 @@ import { policeIcon, transparentIcon } from "../../utils/icons";
 import SchemeModal from "./SchemeModal";
 import Navbar from "../../components/Navbar/Navbar";
 
-
 // react icons
-import { BsExclamationCircle } from 'react-icons/bs';
-import { IoReturnUpBack } from 'react-icons/io5';
-import { GoCheck } from 'react-icons/go';
+import { BsExclamationCircle } from "react-icons/bs";
+import { IoReturnUpBack } from "react-icons/io5";
+import { GoCheck } from "react-icons/go";
 
 const libraries = ["drawing"];
-
 
 const Scheme = () => {
 	const [map, setMap] = useState(null);
@@ -151,15 +149,15 @@ const Scheme = () => {
 	};
 
 	return (
-		<div className="max-h-screen overflow-hidden">	<Navbar />
+		<div className="max-h-screen overflow-hidden">
+			{" "}
+			<Navbar />
 			<div className=" mt-24 ">
 				{!isLoaded ? (
 					<div className=" h-full"></div>
 				) : (
 					<div className=" h-full">
-
 						<div className="h-screen">
-
 							<GoogleMap
 								mapContainerClassName="map-container"
 								center={center}
@@ -208,7 +206,6 @@ const Scheme = () => {
 								}
 							</GoogleMap>
 						</div>
-
 					</div>
 				)}
 			</div>
@@ -222,13 +219,11 @@ const Scheme = () => {
 						<BsExclamationCircle size={25} className="mr-3" /> Draw Event Border
 					</button>
 
-
 					<div class="w-[181px] h-[45px] flex justify-center items-center left-791 top-754 bg-blue-900 shadow-md rounded-lg text-white font-semibold ">
 						<button className="mr-3 flex justify-center items-center">
-							<GoCheck size={25} /> <span className="ml-3" >Finish</span>
+							<GoCheck size={25} /> <span className="ml-3">Finish</span>
 						</button>
 					</div>
-
 				</div>
 			</div>
 		</div>

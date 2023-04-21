@@ -16,7 +16,8 @@ function SchemeModal() {
 				<div className="modal">
 					<div onClick={toggleModal} className="overlay">
 						<div className="modal-content">
-							<h1>Finish Event</h1><br />
+							<h1>Finish Event</h1>
+							<br />
 							<p>
 								Lorem ipsum dolor sit amet consectetur adipisicing elit.
 								Voluptatem culpa nobis fugit quo laudantium necessitatibus,
