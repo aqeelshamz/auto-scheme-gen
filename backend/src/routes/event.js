@@ -3,14 +3,22 @@ import EventModel from "../models/eventModel.js";
 import mongoose from "mongoose";
 import sectorRoutes from "./sector.js";
 import validate from "../util/userValidate.js";
+import joi from "joi";
+import moment from "moment";
+import sampleData from "../util/sampleData.js";
 
 const router = express.Router();
 
 // Use /sectors as a sub route.
 router.use("/sectors", sectorRoutes);
 
-// Get all events
+// Get events sample
 router
+  .get("/sample", async (req, res) => {
+    return res.json(sampleData.eventsSampleData);
+  })
+
+  // Get all events
   .get("/", async (req, res) => {
     try {
       const events = await EventModel.find();
@@ -38,30 +46,63 @@ router
   })
 
   // Create a new event
-  .post("/",  async (req, res) => {
-    const { name, startDate, endDate, color, type, members, boundary } =
-      req.body;
+  .post("/", async (req, res) => {
+    const schema = joi.object({
+      name: joi.string().required(),
+      startDate: joi.string().required(),
+      endDate: joi.string().required(),
+      color: joi.string().required(),
+      type: joi.number().required().valid(1, 2, 3),
+    });
 
     try {
-
+      const { name, startDate, endDate, color, type } =
+        await schema.validateAsync(req.body);
+      console.log(moment(endDate).format("YYYY-MM-DD HH:mm:ss"));
       // Check if an event with the same name already exists
       const existingEvent = await EventModel.findOne({ name });
 
       if (existingEvent) {
-        return res.status(400).json({ error: "An event with the same name already exists" });
+        return res
+          .status(400)
+          .json({ error: "An event with the same name already exists" });
       }
 
       const event = new EventModel({
         name,
-        startDate,
-        endDate,
+        startDate: moment(startDate).toISOString(),
+        endDate: moment(endDate).toISOString(),
         color,
         type,
-        members,
-        boundary,
       });
 
       await event.save();
+      res.json(event);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  })
+
+  .post("/update-boundary", async (req, res) => {
+    const schema = joi.object({
+      eventId: joi.string().required(),
+      type: joi.number().required().valid(1, 2),
+      data: joi.required(),
+    });
+
+    try {
+      const { eventId, type, data } = await schema.validateAsync(req.body);
+      const event = await EventModel.findByIdAndUpdate(eventId, {
+        boundary: {
+          type,
+          data,
+        },
+      });
+      if (!event) {
+        return res.status(404).json({ error: "Event not found" });
+      }
+
       res.json(event);
     } catch (err) {
       console.error(err);
@@ -74,11 +115,9 @@ router
     const eventId = req.params.id;
 
     try {
-      const event = await EventModel.findByIdAndUpdate(
-        eventId,
-        req.body,
-        { new: true }
-      );
+      const event = await EventModel.findByIdAndUpdate(eventId, req.body, {
+        new: true,
+      });
       if (!event) {
         return res.status(404).json({ error: "Event not found" });
       }
@@ -87,16 +126,13 @@ router
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
     }
-
   })
-
 
   // Delete an event
   .delete("/:id", async (req, res) => {
     const eventId = req.params.id;
 
     try {
-
       if (!mongoose.isValidObjectId(eventId)) {
         return res.status(404).json({ error: "object id is not valid" });
       }
@@ -108,7 +144,6 @@ router
       }
 
       res.json({ message: "Event deleted" });
-
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal server error" });

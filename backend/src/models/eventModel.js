@@ -19,8 +19,9 @@ const eventSchema = new mongoose.Schema(
       required: true,
     },
     type: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Number,
       required: true,
+      enum: [1, 2, 3], // 1 = VIP, 2 = Private, 3 = Public
     },
     members: {
       ISH: {
@@ -43,11 +44,10 @@ const eventSchema = new mongoose.Schema(
     boundary: {
       type: {
         type: Number,
-        required: true,
+        enum: [1, 2], // 1 = Rectangle, 2 = Polygon
       },
       data: {
         type: mongoose.Schema.Types.Mixed,
-        required: true,
       },
     },
   },
