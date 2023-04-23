@@ -1,5 +1,6 @@
 import express from "express";
 import SectorModel from "../models/sectorModel.js";
+import sampleData from "../util/sampleData.js";
 
 const router = express.Router();
 
@@ -21,6 +22,22 @@ router
     try {
       const sectors = await SectorModel.find();
       res.json(sectors);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  })
+
+  // READ sectors of an event (sample)
+  .post("/sample/:eventid", async (req, res) => {
+    try {
+      var sector = [];
+      for(const s of sampleData.sectorsSampleData){
+        if(s.eventId == req.params.eventid){
+          sector.push(s);
+        }
+      }
+      res.json(sector);
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
