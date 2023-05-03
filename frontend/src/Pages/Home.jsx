@@ -160,7 +160,7 @@ function Home () {
 						</div>
 					</>
 					{/*Recent event cards end */}
-					open && <CreateEventModal />;
+					{/* open && <CreateEventModal />; */}
 				</div>
 			</div>
 		</div>
