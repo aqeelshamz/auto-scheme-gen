@@ -1,15 +1,8 @@
-import { useState } from "react";
 import EventCard from "../components/EventCard/EventCard";
-import CreateEventModal from "../components/Modal/CreateEventModal";
+import CreateEventModel from "../components/Modal/CreateEventModel";
 import Navbar from "../components/Navbar/Navbar";
 
-function Home () {
-	const [open, setOpen] = useState(false);
-
-	const isOpen = () => {
-		setOpen(true);
-	};
-
+function Home() {
 	function hexToRgba(hex, opacity = 1) {
 		hex = hex.replace("#", "");
 
@@ -116,12 +109,13 @@ function Home () {
 				{/* search bar end */}
 				<div className="m-10">
 					{/*new event start */}
-					<div onClick={isOpen} className="flex justify-start f my-10 ">
+					<div className="flex justify-start f my-10 ">
 						<div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-md flex justify-center items-center text-xl font-semibold dark:md:hover:bg-fuchsia-600">
 							+ New Event
 						</div>
 					</div>
 					{/* new event end */}
+
 					{/*Recent event cards start */}
 					<>
 						<p className="text-2xl font-bold mt-3">All Events</p>
@@ -140,7 +134,9 @@ function Home () {
 							))}
 						</div>
 					</>
+
 					{/*Recent event cards end */}
+
 					{/*Recent event cards start */}
 					<>
 						<p className="text-2xl font-bold mt-3">Recent Events</p>
@@ -159,8 +155,11 @@ function Home () {
 							))}
 						</div>
 					</>
+
 					{/*Recent event cards end */}
-					{/* open && <CreateEventModal />; */}
+
+
+					<CreateEventModel />
 				</div>
 			</div>
 		</div>
