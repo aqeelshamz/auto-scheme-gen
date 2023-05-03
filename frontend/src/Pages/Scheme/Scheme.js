@@ -7,16 +7,17 @@ import { useState, useMemo, useCallback } from "react";
 import "./Scheme.css";
 import { googleApiKey } from "../../utils/utils";
 import { policeIcon, transparentIcon } from "../../utils/icons";
-import SubmitEventModal from "../../components/Modal/SubmitEventModal";
-import NewSectorModal from "../../components/Modal/NewSectorModal";
+import SchemeModal from "./SchemeModal";
 import Navbar from "../../components/Navbar/Navbar";
 
+
 // react icons
-import { BsExclamationCircle } from "react-icons/bs";
-import { IoReturnUpBack } from "react-icons/io5";
-import { GoCheck } from "react-icons/go";
+import { BsExclamationCircle } from 'react-icons/bs';
+import { IoReturnUpBack } from 'react-icons/io5';
+import { GoCheck } from 'react-icons/go';
 
 const libraries = ["drawing"];
+
 
 const Scheme = () => {
 	const [map, setMap] = useState(null);
@@ -150,15 +151,15 @@ const Scheme = () => {
 	};
 
 	return (
-		<div className="max-h-screen overflow-hidden">
-			{" "}
-			<Navbar />
+		<div className="max-h-screen overflow-hidden">	<Navbar />
 			<div className=" mt-24 ">
 				{!isLoaded ? (
 					<div className=" h-full"></div>
 				) : (
 					<div className=" h-full">
+
 						<div className="h-screen">
+
 							<GoogleMap
 								mapContainerClassName="map-container"
 								center={center}
@@ -207,6 +208,7 @@ const Scheme = () => {
 								}
 							</GoogleMap>
 						</div>
+
 					</div>
 				)}
 			</div>
@@ -215,15 +217,18 @@ const Scheme = () => {
 					<button class=" w-[50px] h-[50px] flex justify-center items-center left-434 top-752 bg-white border-2 border-black shadow-md rounded-full box-border">
 						<IoReturnUpBack size={25} className="text-blue-950" />
 					</button>
+
 					<button class=" w-[267px] h-[45px] flex justify-center items-center bg-[#FFF0C9] text-[#C86000] left-507 top-754 border-2 border-[#C86000] shadow-md rounded-lg box-border font-semibold">
 						<BsExclamationCircle size={25} className="mr-3" /> Draw Event Border
 					</button>
+
+
 					<div class="w-[181px] h-[45px] flex justify-center items-center left-791 top-754 bg-blue-900 shadow-md rounded-lg text-white font-semibold ">
 						<button className="mr-3 flex justify-center items-center">
-							<GoCheck size={25} /> <span className="ml-3">Finish</span>
+							<GoCheck size={25} /> <span className="ml-3" >Finish</span>
 						</button>
 					</div>
-					<NewSectorModal />;
+
 				</div>
 			</div>
 		</div>
