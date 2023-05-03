@@ -1,8 +1,10 @@
+import { useState } from "react";
 import EventCard from "../components/EventCard/EventCard";
 import CreateEventModel from "../components/Modal/CreateEventModel";
 import Navbar from "../components/Navbar/Navbar";
 
 function Home() {
+	const [openModal, setOpenModal] = useState(false);
 	function hexToRgba(hex, opacity = 1) {
 		hex = hex.replace("#", "");
 
@@ -109,11 +111,11 @@ function Home() {
 				{/* search bar end */}
 				<div className="m-10">
 					{/*new event start */}
-					<div className="flex justify-start f my-10 ">
+					<button onClick={() => setOpenModal(true)} className="flex justify-start f my-10 ">
 						<div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-md flex justify-center items-center text-xl font-semibold dark:md:hover:bg-fuchsia-600">
 							+ New Event
 						</div>
-					</div>
+					</button>
 					{/* new event end */}
 
 					{/*Recent event cards start */}
@@ -159,7 +161,7 @@ function Home() {
 					{/*Recent event cards end */}
 
 
-					<CreateEventModel />
+					<CreateEventModel open={openModal} onClose={() => setOpenModal(false)} />
 				</div>
 			</div>
 		</div>

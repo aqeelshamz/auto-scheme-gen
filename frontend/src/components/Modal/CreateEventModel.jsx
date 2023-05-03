@@ -8,9 +8,9 @@ import { CirclePicker } from 'react-color';
 
 
 function CreateEventModel({ open, onClose }) {
-    // if (!open) return null;
+    if (!open) return null;
     return (
-        <div onClick={onClose} className='overlay  bg-zinc-700 fixed w-full h-full flex justify-center items-center'>
+        <div onClick={onClose} className='overlay  bg-zinc-700 fixed w-full h-full flex justify-center items-center z-[2050]'>
             <div
                 onClick={(e) => {
                     e.stopPropagation();
@@ -21,7 +21,7 @@ function CreateEventModel({ open, onClose }) {
                 <div className='m-4'>
                     <div className='flex justify-between'>
                         <p className='font-semibold text-xl'>New Event</p>
-                        <button className="absolute top-0 right-0 p-2 text-gray-500 hover:text-gray-800 focus:outline-none">
+                        <button onClick={onClose} className="absolute top-0 right-0 p-2 text-gray-500 hover:text-gray-800 focus:outline-none">
                             <IoClose size={30} />
                         </button>
                     </div>
@@ -61,7 +61,7 @@ function CreateEventModel({ open, onClose }) {
 
                     </div>
 
-                    <CirclePicker className='mt-3' circleSize={28} colors={
+                    <CirclePicker className='mt-3' circleSize={28} color='#AAEC77' colors={
                         ['#EC7777', '#AAEC77', '#77ECC2', '#779FEC', '#EC77BD', '#ECA177']
                     } />
 
