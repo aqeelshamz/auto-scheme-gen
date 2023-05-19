@@ -50,6 +50,11 @@ const eventSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.Mixed,
       },
     },
+    lastOpened: {
+      type: Date,
+      default: Date.now,
+      required: false,
+    },
   },
   { timestamps: true }
 );

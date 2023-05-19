@@ -35,4 +35,4 @@ mongoose
 
 //* ROUTES
 app.use("/user", userRoutes);
-app.use("/events", validate, eventRoutes);
+app.use("/events", eventRoutes);
