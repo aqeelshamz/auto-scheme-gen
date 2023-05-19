@@ -6,29 +6,26 @@ import Signup from "./Pages/Login/Signup";
 import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
-	{
-		/* if (
-		!localStorage.getItem("token") &&
-		window.location.pathname !== "/login" &&
-		window.location.pathname !== "/signup"
-	) {
-		window.location.href = "/login";
-	} */
-	}
+  if (
+    !localStorage.getItem("token") &&
+    window.location.pathname !== "/login" &&
+    window.location.pathname !== "/signup"
+  ) {
+    window.location.href = "/login";
+  }
 
-	return (
-		<>
-			<Router>
-				
-				<Routes>
-					<Route exact path="/" element={<Scheme />} />
-					<Route exact path="/login" element={<Login />} />
-					<Route exact path="/signup" element={<Signup />} />
-					<Route exact path="/home" element={<Home />} />
-				</Routes>
-			</Router>
-		</>
-	);
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Scheme />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/home" element={<Home />} />
+        </Routes>
+      </Router>
+    </>
+  );
 };
 
 export default App;

@@ -17,6 +17,7 @@ const Login = () => {
 			api
 				.post("/user/login", { email, password: pass })
 				.then((response) => {
+					localStorage.setItem("token", response.data?.token)
 					alert("Logged In!");
 					navigate("/home");
 				})
