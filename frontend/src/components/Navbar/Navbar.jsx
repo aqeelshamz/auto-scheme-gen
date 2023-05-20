@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { BiX, BiMenuAltRight } from "react-icons/bi";
 import { RiLogoutCircleRLine, RiLoginCircleFill } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import "./Navbar.css";
 
 function Navbar() {
 	const [isMobileBar, setIsMobileBar] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
+	const [openMenu, setOpenMenu] = useState(false);
+
 	const position = 250;
 	const location = useLocation();
 
@@ -68,7 +71,9 @@ function Navbar() {
 					{isLoggedIn ? (
 						<>
 							<button
-								// onClick={handleLogout}
+								onClick={() => {
+									setOpenMenu((prev) => !prev);
+								}}
 								className=" rounded-full border-sky-500   font-bold bg-sky-300 hover:!text-white"
 							>
 								<div className="flex p-3 mx-1 items-center">
@@ -78,12 +83,18 @@ function Navbar() {
 						</>
 					) : (
 						<>
-							<Link to="/sign-in" className="hover:text-sky-500  text-xl">
+							<Link
+								to="/sign-in"
+								className="hover:text-sky-500  text-xl"
+							>
 								<RiLoginCircleFill className="font-bold mr-1  " />
 							</Link>
 						</>
 					)}
 				</div>
+
+				{openMenu && <DropDownMenu />}
+
 				{/* <div
                     className={`md:hidden font-bold text-3xl ${position < 150 &&
                         `text-black`

@@ -1,7 +1,6 @@
-import React from 'react';
 import { IoClose } from "react-icons/io5";
 import { MdArrowDropDown } from "react-icons/md";
-import "./Indexl.css";
+import "./Modal.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CirclePicker } from 'react-color';
