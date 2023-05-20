@@ -14,10 +14,9 @@ const Login = () => {
 		setEmail(e.target[0].value);
 		setPass(e.target[1].value);
 		if (email && pass) {
-			api
-				.post("/user/login", { email, password: pass })
+			api.post("/user/login", { email, password: pass })
 				.then((response) => {
-					localStorage.setItem("token", response.data?.token)
+					localStorage.setItem("token", response.data?.token);
 					alert("Logged In!");
 					navigate("/home");
 				})
@@ -32,8 +31,13 @@ const Login = () => {
 			<section>
 				<div className="login">
 					<div className="auth-form-container">
-						<div className="column" style={{ paddingBottom: "20px" }}>
-							<p style={{ fontSize: "2rem", fontWeight: "800" }}>SchemeGen</p>
+						<div
+							className="column"
+							style={{ paddingBottom: "20px" }}
+						>
+							<p style={{ fontSize: "2rem", fontWeight: "800" }}>
+								SchemeGen
+							</p>
 							<p
 								style={{
 									fontSize: "0.8rem",
@@ -68,13 +72,12 @@ const Login = () => {
 							<br />
 							<p>
 								Don't have an account?
-								<br />
-									<button
-										className="link-btn"
-										onClick={() => navigate("/signup")}
-									>
-										Sign Up
-									</button>
+								<button
+									className="link-btn"
+									onClick={() => navigate("/signup")}
+								>
+									Sign Up
+								</button>
 							</p>
 						</form>
 					</div>
