@@ -2,11 +2,8 @@
   "signupData": {
     "name": "John Doe",
     "email": "johndoe@example.com",
-    "password": "password123",
-    "type": 1,
-    "profilePic": "https://example.com/johndoe.jpg"
+    "password": "password123"
   },
-
   "loginData": {
     "email": "johndoe@example.com",
     "password": "password123"
