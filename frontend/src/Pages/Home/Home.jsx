@@ -53,58 +53,6 @@ function Home() {
 		return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 	}
 
-	const events = [
-		{
-			name: "Birthday Party",
-			date: new Date("2023-05-15"),
-			color: "#FF69B4",
-		},
-		{
-			name: "Graduation Ceremony",
-			date: new Date("2023-06-10"),
-			color: "#87CEEB",
-		},
-		{
-			name: "New Year Celebration",
-			date: new Date("2024-01-01"),
-			color: "#FFD700",
-		},
-		{
-			name: "Easter Sunday",
-			date: new Date("2023-04-16"),
-			color: "#00FF7F",
-		},
-		{
-			name: "Independence Day",
-			date: new Date("2023-07-04"),
-			color: "#FFA500",
-		},
-		{
-			name: "Halloween Party",
-			date: new Date("2023-10-31"),
-			color: "#FF6347",
-		},
-		{
-			name: "Thanksgiving Day",
-			date: new Date("2023-11-23"),
-			color: "#008000",
-		},
-		{
-			name: "Christmas Day",
-			date: new Date("2023-12-25"),
-			color: "#FF0000",
-		},
-		{
-			name: "New Year's Eve",
-			date: new Date("2023-12-31"),
-			color: "#9400D3",
-		},
-		{
-			name: "Valentine's Day",
-			date: new Date("2024-02-14"),
-			color: "#800080",
-		},
-	];
 
 	return (
 		<div className="overflow-hidden">
@@ -159,7 +107,7 @@ function Home() {
 					<>
 						<p className="text-2xl font-bold mt-3">Recent Events</p>
 						<div className="flex flex-wrap justify-start my-10">
-							{events
+							{data
 								.filter((item) => {
 									if (search == "") return item;
 									else if (
@@ -180,7 +128,7 @@ function Home() {
 										}}
 										key={index}
 										title={item.name}
-										jsDate={item.date}
+										jsDate={item.startDate}
 										color={item.color}
 									/>
 								))}
