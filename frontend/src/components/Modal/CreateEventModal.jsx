@@ -155,6 +155,8 @@ function CreateEventModel({ open, onClose }) {
 		delete formDataCopy.SI;
 		delete formDataCopy.CPO;
 		delete formDataCopy.ICPO;
+		delete formDataCopy.boundary;
+		delete formDataCopy.members;
 
 
 
