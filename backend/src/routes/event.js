@@ -53,6 +53,7 @@ router
       endDate: joi.string().required(),
       color: joi.string().required(),
       type: joi.number().required().valid(1, 2, 3),
+      members: joi.object().required(),
     });
 
     try {
@@ -74,6 +75,7 @@ router
         endDate: moment(endDate).toISOString(),
         color,
         type,
+        members,
       });
 
       await event.save();
