@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import EventCard from "../../components/EventCard/EventCard";
 import CreateEventModel from "../../components/Modal/CreateEventModel";
 import Navbar from "../../components/Navbar/Navbar";
@@ -6,6 +7,34 @@ import Navbar from "../../components/Navbar/Navbar";
 function Home() {
 	const [openModal, setOpenModal] = useState(false);
 	const [search, setSearch] = useState("");
+
+	const PORT = "http://localhost:6001/";
+
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await axios.get(`${PORT}events/sample`);
+
+				(response.data).forEach(obj => {
+					obj.startDate = new Date(obj.startDate);
+					obj.createdAt = new Date(obj.createdAt);
+					obj.endDate = new Date(obj.endDate);
+					obj.updatedAt = new Date(obj.updatedAt);
+
+				});
+
+				setData(response.data);
+				console.log(response.data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchData();
+	}, []);
+
 
 	function hexToRgba(hex, opacity = 1) {
 		hex = hex.replace("#", "");
@@ -164,7 +193,7 @@ function Home() {
 					<>
 						<p className="text-2xl font-bold mt-3">All Events</p>
 						<div className="flex flex-wrap justify-start my-10 ">
-							{events
+							{data
 								.filter((item) => {
 									if (search == "") return item;
 									else if (
@@ -185,7 +214,7 @@ function Home() {
 										}}
 										key={index}
 										title={item.name}
-										jsDate={item.date}
+										jsDate={item.startDate}
 										color={item.color}
 									/>
 								))}
