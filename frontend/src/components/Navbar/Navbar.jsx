@@ -21,19 +21,16 @@ function Navbar() {
 	return (
 		<div className=" relative bg-white text-black z-[2000] box-border ">
 			<div
-				className={`${
-					position >= 150 &&
+				className={`${position >= 150 &&
 					!isMobileBar &&
 					`fixed w-full top-0 left-0 right-0 bottom-auto bg-white text-black 	drop-shadow-lg`
-				} flex justify-between items-center py-4 px-3 z-[2000] border-b ${
-					position < 150 ? `border-black/40` : `border-white/40`
-				}`}
+					} flex justify-between items-center py-4 px-3 z-[2000] border-b ${position < 150 ? `border-black/40` : `border-white/40`
+					}`}
 			>
-				<Link to="/" className="flex items-center gap-x-1">
+				<Link to="/home" className="flex items-center gap-x-1">
 					<h1
-						className={` text-base md:text-2xl font-bold   hover:text-sky-700 ${
-							position < 150 && `text-black`
-						}`}
+						className={` text-base md:text-2xl font-bold   hover:text-sky-700 ${position < 150 && `text-black`
+							}`}
 					>
 						<div>
 							<p className="text-3xl font-extrabold">SchemeGen</p>
@@ -50,17 +47,15 @@ function Navbar() {
 				</Link>
 
 				<div
-					className={`md:hidden ${
-						!isMobileBar && `hidden`
-					} z-[2000] fixed top-0 right-0 left-auto bg-white/60 text-black text-6xl`}
+					className={`md:hidden ${!isMobileBar && `hidden`
+						} z-[2000] fixed top-0 right-0 left-auto bg-white/60 text-black text-6xl`}
 					onClick={toggleMobileBar}
 				>
 					<BiX />
 				</div>
 				<div
-					className={`hidden md:block text-base md:text-2xl font-bold   hover:text-sky-500 ${
-						position < 150 && `text-black`
-					}`}
+					className={`hidden md:block text-base md:text-2xl font-bold   hover:text-sky-500 ${position < 150 && `text-black`
+						}`}
 				>
 					{/* <Link
                         to={"/"} className="hover:text-sky-500  text-xl mr-1"

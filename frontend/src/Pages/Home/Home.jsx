@@ -53,7 +53,7 @@ function Home() {
 		return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 	}
 
-const events = [
+	const events = [
 		{
 			name: "Birthday Party",
 			date: new Date("2023-05-15"),
@@ -159,7 +159,7 @@ const events = [
 					<>
 						<p className="text-2xl font-bold mt-3">Recent Events</p>
 						<div className="flex flex-wrap justify-start my-10">
-							{events
+							{data
 								.filter((item) => {
 									if (search === "") return item;
 									else if (
@@ -180,8 +180,9 @@ const events = [
 										}}
 										key={index}
 										title={item.name}
-										jsDate={item.date}
+										jsDate={item.startDate}
 										color={item.color}
+										id={item._id}
 									/>
 								))}
 						</div>
@@ -216,6 +217,7 @@ const events = [
 										title={item.name}
 										jsDate={item.startDate}
 										color={item.color}
+										id={item._id}
 									/>
 								))}
 						</div>
