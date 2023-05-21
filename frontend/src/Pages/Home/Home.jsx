@@ -130,6 +130,7 @@ function Home() {
 										title={item.name}
 										jsDate={item.startDate}
 										color={item.color}
+										id={item._id}
 									/>
 								))}
 						</div>
@@ -164,6 +165,7 @@ function Home() {
 										title={item.name}
 										jsDate={item.startDate}
 										color={item.color}
+										id={item._id}
 									/>
 								))}
 						</div>
