@@ -57,7 +57,7 @@ router
     });
 
     try {
-      const { name, startDate, endDate, color, type } =
+      const { name, startDate, endDate, color, members, type } =
         await schema.validateAsync(req.body);
       console.log(moment(endDate).format("YYYY-MM-DD HH:mm:ss"));
       // Check if an event with the same name already exists
