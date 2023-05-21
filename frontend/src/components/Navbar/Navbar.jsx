@@ -84,7 +84,7 @@ function Navbar() {
 					) : (
 						<>
 							<Link
-								to="/sign-in"
+								to="/signup"
 								className="hover:text-sky-500  text-xl"
 							>
 								<RiLoginCircleFill className="font-bold mr-1  " />
