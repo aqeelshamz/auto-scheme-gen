@@ -150,6 +150,43 @@ router
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
     }
+  })
+
+
+  // Update last opened event
+  .post('/:id/last-opened', async (req, res) => {
+    const { id } = req.params;
+    
+    try {
+      const event = await Event.findById(id);
+      if (!event) {
+        return res.status(404).json({ error: 'Event not found' });
+      }
+  
+      event.lastOpened = new Date();
+      await event.save();
+  
+      return res.json({ message: 'Last opened event updated successfully' });
+    } catch (error) {
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  })
+
+
+  // Get last opened event
+  .get('/:id/last-opened', async (req, res) => {
+    const { id } = req.params;
+    
+    try {
+      const event = await Event.findById(id);
+      if (!event) {
+        return res.status(404).json({ error: 'Event not found' });
+      }
+  
+      return res.json(event);
+    } catch (error) {
+      return res.status(500).json({ error: 'Internal server error' });
+    }
   });
 
 export default router;

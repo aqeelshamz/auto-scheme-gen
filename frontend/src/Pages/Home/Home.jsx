@@ -1,10 +1,41 @@
-import { useState } from "react";
-import EventCard from "../components/EventCard/EventCard";
-import CreateEventModel from "../components/Modal/CreateEventModel";
-import Navbar from "../components/Navbar/Navbar";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import EventCard from "../../components/EventCard/EventCard";
+import CreateEventModal from "../../components/Modal/CreateEventModal";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Home() {
 	const [openModal, setOpenModal] = useState(false);
+	const [search, setSearch] = useState("");
+
+	const PORT = "http://localhost:6001/";
+
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await axios.get(`${PORT}events/sample`);
+
+				(response.data).forEach(obj => {
+					obj.startDate = new Date(obj.startDate);
+					obj.createdAt = new Date(obj.createdAt);
+					obj.endDate = new Date(obj.endDate);
+					obj.updatedAt = new Date(obj.updatedAt);
+
+				});
+
+				setData(response.data);
+				console.log(response.data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchData();
+	}, []);
+
+
 	function hexToRgba(hex, opacity = 1) {
 		hex = hex.replace("#", "");
 
@@ -103,7 +134,10 @@ function Home() {
 							type="text"
 							id="table-search"
 							className="border border-blue-300 bg-blue-100 text-base rounded-lg  block w-80 pl-10 p-2.5  "
-							placeholder="Search Event"
+							placeholder="Search"
+							onChange={(event) => {
+								setSearch(event.target.value);
+							}}
 						/>
 					</div>
 				</div>
@@ -111,7 +145,10 @@ function Home() {
 				{/* search bar end */}
 				<div className="m-10">
 					{/*new event start */}
-					<button onClick={() => setOpenModal(true)} className="flex justify-start f my-10 ">
+					<button
+						onClick={() => setOpenModal(true)}
+						className="flex justify-start f my-10 "
+					>
 						<div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-md flex justify-center items-center text-xl font-semibold dark:md:hover:bg-fuchsia-600">
 							+ New Event
 						</div>
@@ -120,48 +157,78 @@ function Home() {
 
 					{/*Recent event cards start */}
 					<>
-						<p className="text-2xl font-bold mt-3">All Events</p>
-						<div className="flex flex-wrap justify-start my-10">
-							{events.map((item, index) => (
-								<EventCard
-									style={{
-										color: item.color,
-										backgroundColor: hexToRgba(item.color, 0.2),
-									}}
-									key={index}
-									title={item.name}
-									jsDate={item.date}
-									color={item.color}
-								/>
-							))}
-						</div>
-					</>
-
-					{/*Recent event cards end */}
-
-					{/*Recent event cards start */}
-					<>
 						<p className="text-2xl font-bold mt-3">Recent Events</p>
-						<div className="flex flex-wrap justify-start my-10 ">
-							{events.map((item, index) => (
-								<EventCard
-									style={{
-										color: item.color,
-										backgroundColor: hexToRgba(item.color, 0.18),
-									}}
-									key={index}
-									title={item.name}
-									jsDate={item.date}
-									color={item.color}
-								/>
-							))}
+						<div className="flex flex-wrap justify-start my-10">
+							{data
+								.filter((item) => {
+									if (search === "") return item;
+									else if (
+										item.name
+											.toLowerCase()
+											.includes(search.toLowerCase())
+									)
+										return item;
+								})
+								.map((item, index) => (
+									<EventCard
+										style={{
+											color: item.color,
+											backgroundColor: hexToRgba(
+												item.color,
+												0.2
+											),
+										}}
+										key={index}
+										title={item.name}
+										jsDate={item.startDate}
+										color={item.color}
+										id={item._id}
+									/>
+								))}
 						</div>
 					</>
 
 					{/*Recent event cards end */}
 
+					{/*All event cards start */}
+					<>
+						<p className="text-2xl font-bold mt-3">All Events</p>
+						<div className="flex flex-wrap justify-start my-10 ">
+							{data
+								.filter((item) => {
+									if (search === "") return item;
+									else if (
+										item.name
+											.toLowerCase()
+											.includes(search.toLowerCase())
+									)
+										return item;
+								})
+								.map((item, index) => (
+									<EventCard
+										style={{
+											color: item.color,
+											backgroundColor: hexToRgba(
+												item.color,
+												0.18
+											),
+										}}
+										key={index}
+										title={item.name}
+										jsDate={item.startDate}
+										color={item.color}
+										id={item._id}
+									/>
+								))}
+						</div>
+					</>
 
-					<CreateEventModel open={openModal} onClose={() => setOpenModal(false)} />
+					{/*All event cards end */}
+
+					<CreateEventModal
+						open={openModal}
+						onClose={() => setOpenModal(false)}
+					/>
 				</div>
 			</div>
 		</div>
