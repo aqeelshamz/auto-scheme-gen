@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import { api } from "../../utils/utils";
+import { BiLeftArrow } from "react-icons/bi";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -30,24 +31,28 @@ const Login = () => {
 		<>
 			<section>
 				<div className="login">
-					<div className="auth-form-container">
-						<div
-							className="column"
-							style={{ paddingBottom: "20px" }}
+					<div style={{ paddingBottom: "20px" }}>
+						<p
+							style={{
+								fontSize: "50px",
+								fontWeight: "800",
+								color: "#f0f0f0",
+							}}
 						>
-							<p style={{ fontSize: "2rem", fontWeight: "800" }}>
-								SchemeGen
-							</p>
-							<p
-								style={{
-									fontSize: "0.8rem",
-									fontWeight: "500",
-								}}
-							>
-								THRISSUR CITY POLICE
-							</p>
-						</div>
-						<h2>Log In</h2>
+							SchemeGen
+						</p>
+						<p
+							style={{
+								fontSize: "15px",
+								fontWeight: "500",
+								color: "#f0f0f0",
+							}}
+						>
+							THRISSUR CITY POLICE
+						</p>
+					</div>
+					<div className="auth-form-container">
+						{/* <h2 className="font-semibold pb-5 text-xl">Login</h2> */}
 						<form className="login-form" onSubmit={handleSubmit}>
 							<input
 								value={email}
@@ -68,16 +73,13 @@ const Login = () => {
 								name="password"
 								required
 							/>
-							<button type="submit">Log In</button>
+							<button type="submit">Login</button>
 							<br />
 							<p>
-								Don't have an account?
-								<button
-									className="link-btn"
-									onClick={() => navigate("/signup")}
-								>
-									Sign Up
-								</button>
+								Don't have an account?&ensp;
+								<Link to="/signup" className="link-btn">
+									Sign up
+								</Link>
 							</p>
 						</form>
 					</div>

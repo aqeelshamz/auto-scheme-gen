@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import { api } from "../../utils/utils";
 
@@ -29,21 +29,28 @@ const Signup = () => {
 
 	return (
 		<div className="login">
+			<div style={{ paddingBottom: "20px" }}>
+				<p
+					style={{
+						fontSize: "50px",
+						fontWeight: "800",
+						color: "#f0f0f0",
+					}}
+				>
+					SchemeGen
+				</p>
+				<p
+					style={{
+						fontSize: "15px",
+						fontWeight: "500",
+						color: "#f0f0f0",
+					}}
+				>
+					THRISSUR CITY POLICE
+				</p>
+			</div>
 			<div className="auth-form-container">
-				<div className="column" style={{ paddingBottom: "20px" }}>
-					<p style={{ fontSize: "2rem", fontWeight: "800" }}>
-						SchemeGen
-					</p>
-					<p
-						style={{
-							fontSize: "0.8rem",
-							fontWeight: "500",
-						}}
-					>
-						THRISSUR CITY POLICE
-					</p>
-				</div>
-				<h2>Sign Up</h2>
+				{/* <h2 className="font-semibold pb-5 text-xl">Sign up</h2> */}
 				<form className="signup-form" onSubmit={handleSubmit}>
 					<input
 						value={name}
@@ -74,16 +81,13 @@ const Signup = () => {
 						name="password"
 						required
 					/>
-					<button type="submit">Sign Up</button>
+					<button type="submit">Sign up</button>
 					<br />
 					<p>
-						Already have an account?
-						<button
-							className="link-btn"
-							onClick={() => navigate("/login")}
-						>
-							Log In
-						</button>
+						Already have an account?&ensp;
+						<Link to="/login" className="link-btn">
+							Login
+						</Link>
 					</p>
 				</form>
 			</div>
