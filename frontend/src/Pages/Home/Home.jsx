@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EventCard from "../../components/EventCard/EventCard";
-import CreateEventModel from "../../components/Modal/CreateEventModel";
+import CreateEventModal from "../../components/Modal/CreateEventModal";
 import Navbar from "../../components/Navbar/Navbar";
 
 function Home() {
@@ -24,7 +24,7 @@ function Home() {
 		return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 	}
 
-	const events = [
+const events = [
 		{
 			name: "Birthday Party",
 			date: new Date("2023-05-15"),
@@ -132,7 +132,7 @@ function Home() {
 						<div className="flex flex-wrap justify-start my-10">
 							{events
 								.filter((item) => {
-									if (search == "") return item;
+									if (search === "") return item;
 									else if (
 										item.name
 											.toLowerCase()
@@ -166,7 +166,7 @@ function Home() {
 						<div className="flex flex-wrap justify-start my-10 ">
 							{events
 								.filter((item) => {
-									if (search == "") return item;
+									if (search === "") return item;
 									else if (
 										item.name
 											.toLowerCase()
@@ -194,7 +194,7 @@ function Home() {
 
 					{/*All event cards end */}
 
-					<CreateEventModel
+					<CreateEventModal
 						open={openModal}
 						onClose={() => setOpenModal(false)}
 					/>

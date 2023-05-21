@@ -24,7 +24,7 @@ function Navbar() {
 				className={`${
 					position >= 150 &&
 					!isMobileBar &&
-					`fixed w-full top-0 left-0 right-0 bottom-auto bg-white text-black drop-shadow-xl`
+					`fixed w-full top-0 left-0 right-0 bottom-auto bg-white text-black 	drop-shadow-lg`
 				} flex justify-between items-center py-4 px-3 z-[2000] border-b ${
 					position < 150 ? `border-black/40` : `border-white/40`
 				}`}
@@ -74,7 +74,7 @@ function Navbar() {
 								onClick={() => {
 									setOpenMenu((prev) => !prev);
 								}}
-								className=" rounded-full border-sky-500   font-bold bg-sky-300 hover:!text-white"
+								className=" rounded-full border-sky-500 font-bold bg-sky-300 hover:!text-white"
 							>
 								<div className="flex p-3 mx-1 items-center">
 									<BsPerson className="font-bold mr-1 text-blue-950 " />
