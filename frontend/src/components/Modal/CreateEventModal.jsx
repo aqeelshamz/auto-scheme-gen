@@ -5,12 +5,10 @@ import "./Modal.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CirclePicker } from "react-color";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { api } from "../../utils/utils";
 
 function CreateEventModal({ open, onClose }) {
-  const PORT = "http://localhost:6001/";
-
   const [loading, setLoading] = useState(false);
   const initFormData = {
     name: "",
@@ -97,7 +95,7 @@ function CreateEventModal({ open, onClose }) {
     console.log(formDataCopy);
     // Update in firestore
     try {
-      const response = await axios.post(`${PORT}events`, formDataCopy);
+      const response = await api.post('/events', formDataCopy);
       console.log(response.data); // Handle successful form submission
       toast.success("Event  saved");
       onClose();

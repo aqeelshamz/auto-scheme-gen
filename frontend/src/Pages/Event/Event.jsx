@@ -17,6 +17,8 @@ import { IoReturnUpBack } from "react-icons/io5";
 import { GoCheck } from "react-icons/go";
 import { useParams } from "react-router-dom";
 import { api } from "../../utils/utils";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const libraries = ["drawing"];
 
@@ -165,6 +167,9 @@ const Event = () => {
       .catch((err) => console.log(err));
   };
 
+  const [newSectorType, setNewSectorType] = useState(1);
+  const [newSectorData, setNewSectorData] = useState(null);
+
   useEffect(() => {
     getEventData();
   }, []);
@@ -203,6 +208,8 @@ const Event = () => {
                           });
                         });
                         console.log(JSON.stringify(array));
+                        setNewSectorData(array);
+                        setNewSectorType(2);
                         setSectorModal(true);
                       }}
                       onOverlayComplete={(e) => {
@@ -210,6 +217,8 @@ const Event = () => {
                           console.log(
                             JSON.stringify(e.overlay.getBounds().toJSON())
                           );
+                          setNewSectorData(e.overlay.getBounds().toJSON());
+                          setNewSectorType(1);
                           setSectorModal(true);
                         } else if (e.type === "marker") {
                           console.log(
@@ -258,9 +267,13 @@ const Event = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
 
       <CreateSectorModal
+        eventId={eventId}
+        type={newSectorType}
+        data={newSectorData}
         open={sectorModal}
         onClose={() => setSectorModal(false)}
       />
