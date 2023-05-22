@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 import "./Login.css";
 import { api } from "../../utils/utils";
 
@@ -8,6 +9,8 @@ const Signup = () => {
 	const [pass, setPass] = useState("");
 	const [name, setName] = useState("");
 	const [confirmPass, setConfirmPass] = useState("");
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -72,24 +75,48 @@ const Signup = () => {
 						autoComplete="off"
 						required
 					/>
-					<input
-						value={pass}
-						onChange={(e) => setPass(e.target.value)}
-						type="password"
-						placeholder="New password"
-						id="password"
-						name="password"
-						required
-					/>
-					<input
-						value={confirmPass}
-						onChange={(e) => setConfirmPass(e.target.value)}
-						type="password"
-						placeholder="Confirm password"
-						id="password"
-						name="password"
-						required
-					/>
+					<div className="flex justify-between items-center">
+						<input
+							value={pass}
+							onChange={(e) => setPass(e.target.value)}
+							type={showPassword ? "text" : "password"}
+							placeholder="New password"
+							id="password"
+							name="password"
+							required
+						/>
+						<div
+							className="p-2"
+							onClick={() => setShowPassword(!showPassword)}
+						>
+							{showPassword ? (
+								<FiEyeOff size={20} />
+							) : (
+								<FiEye size={20} />
+							)}
+						</div>
+					</div>
+					<div className="flex justify-between items-center">
+						<input
+							value={confirmPass}
+							onChange={(e) => setConfirmPass(e.target.value)}
+							type={showConfirmPassword ? "text" : "password"}
+							placeholder="Confirm password"
+							id="password"
+							name="password"
+							required
+						/>
+						<div
+							className="p-2"
+							onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+						>
+							{showConfirmPassword ? (
+								<FiEyeOff size={20} />
+							) : (
+								<FiEye size={20} />
+							)}
+						</div>
+					</div>
 
 					{confirmPass !== "" && confirmPass !== pass && (
 						<p style={{ fontSize: 14, color: "red" }}>
