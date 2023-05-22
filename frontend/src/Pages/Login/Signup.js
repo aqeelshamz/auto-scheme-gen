@@ -7,6 +7,7 @@ const Signup = () => {
 	const [email, setEmail] = useState("");
 	const [pass, setPass] = useState("");
 	const [name, setName] = useState("");
+	const [confirmPass, setConfirmPass] = useState("");
 
 	const navigate = useNavigate();
 
@@ -18,7 +19,6 @@ const Signup = () => {
 		if (name && email && pass) {
 			api.post("/user/signup", { name, email, password: pass })
 				.then((response) => {
-					alert("User registered successfully!");
 					navigate("/login");
 				})
 				.catch((err) => alert(err.response.data.error));
@@ -81,6 +81,22 @@ const Signup = () => {
 						name="password"
 						required
 					/>
+					<input
+						value={confirmPass}
+						onChange={(e) => setConfirmPass(e.target.value)}
+						type="password"
+						placeholder="Confirm password"
+						id="password"
+						name="password"
+						required
+					/>
+
+					{confirmPass !== "" && confirmPass !== pass && (
+						<p style={{ fontSize: 14, color: "red" }}>
+							Password do not match
+						</p>
+					)}
+
 					<button type="submit">Sign up</button>
 					<br />
 					<p>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import { api } from "../../utils/utils";
-import { BiLeftArrow } from "react-icons/bi";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -18,7 +17,6 @@ const Login = () => {
 			api.post("/user/login", { email, password: pass })
 				.then((response) => {
 					localStorage.setItem("token", response.data?.token);
-					alert("Logged In!");
 					navigate("/home");
 				})
 				.catch((err) => alert(err.response.data.error));

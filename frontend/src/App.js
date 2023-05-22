@@ -7,13 +7,13 @@ import Signup from "./Pages/Login/Signup";
 const App = () => {
 
 	// Comment this block to bypass login
-	/* if (
+	if (
 		!localStorage.getItem("token") &&
 		window.location.pathname !== "/login" &&
 		window.location.pathname !== "/signup"
 	) {
 		window.location.href = "/login";
-	} */
+	}
 
 	return (
 		<>

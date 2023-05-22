@@ -10,7 +10,7 @@ const DropDownMenu = () => {
 		<div className="flex flex-col dropDownMenu">
 			<ul className="flex flex-col gap-4">
 				<li>Settings</li>
-				<li onClick={logOut}>Log Out</li>
+				<li onClick={logOut}>Log out</li>
 			</ul>
 		</div>
 	);

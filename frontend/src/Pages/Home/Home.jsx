@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import EventCard from "../../components/EventCard/EventCard";
 import CreateEventModal from "../../components/Modal/CreateEventModal";
 import Navbar from "../../components/Navbar/Navbar";
@@ -17,12 +17,11 @@ function Home() {
 			try {
 				const response = await axios.get(`${PORT}events/sample`);
 
-				(response.data).forEach(obj => {
+				response.data.forEach((obj) => {
 					obj.startDate = new Date(obj.startDate);
 					obj.createdAt = new Date(obj.createdAt);
 					obj.endDate = new Date(obj.endDate);
 					obj.updatedAt = new Date(obj.updatedAt);
-
 				});
 
 				setData(response.data);
@@ -34,7 +33,6 @@ function Home() {
 
 		fetchData();
 	}, []);
-
 
 	function hexToRgba(hex, opacity = 1) {
 		hex = hex.replace("#", "");
