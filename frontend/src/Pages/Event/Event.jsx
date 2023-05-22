@@ -19,6 +19,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../../utils/utils";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { set } from "date-fns";
 
 const libraries = ["drawing"];
 
@@ -34,7 +35,7 @@ const Event = () => {
     libraries,
   });
 
-  const onMapLoad = useCallback((map) => {
+  const onMapLoad = useCallback(async (map) => {
     setMap(map);
     const icon = {
       url: transparentIcon,
@@ -42,6 +43,36 @@ const Event = () => {
       origin: new window.google.maps.Point(0, 0),
       anchor: new window.google.maps.Point(0, 0),
     };
+
+    var response = await api.post(`/events/sectors/${eventId}`);
+
+    for (const sector of response.data) {
+      if (sector.type === 1) {
+        console.log("data", sector.data);
+        var rectangle = new window.google.maps.Rectangle({
+          strokeColor: sector.color,
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: sector.color,
+          fillOpacity: 0.1,
+          map,
+          clickable: true,
+          bounds: sector.data,
+        });
+        rectangle.setMap(map);
+      } else {
+        const polygon = new window.google.maps.Polygon({
+          paths: sector.data,
+          strokeColor: sector.color,
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: sector.color,
+          fillOpacity: 0.35,
+        });
+		polygon.setMap(map);
+      }
+    }
+
     // // Define the LatLng coordinates for the polygon's path.
     // const triangleCoords = [
     //   { lat: 10.52724489503287, lng: 76.19269249580081 },
