@@ -61,87 +61,87 @@ const Event = () => {
 
     // bermudaTriangle.setMap(map);
 
-    const rectangle = new window.google.maps.Rectangle({
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#FF0000",
-      fillOpacity: 0.1,
-      map,
-      clickable: true,
-      bounds: {
-        south: 10.511379919371432,
-        west: 76.19887230537113,
-        north: 10.544796682829698,
-        east: 76.23097298286136,
-      },
-    });
+    // const rectangle = new window.google.maps.Rectangle({
+    //   strokeColor: "#FF0000",
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   fillColor: "#FF0000",
+    //   fillOpacity: 0.1,
+    //   map,
+    //   clickable: true,
+    //   bounds: {
+    //     south: 10.511379919371432,
+    //     west: 76.19887230537113,
+    //     north: 10.544796682829698,
+    //     east: 76.23097298286136,
+    //   },
+    // });
 
-    const rectangle2 = new window.google.maps.Rectangle({
-      strokeColor: "#169100",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#169100",
-      fillOpacity: 0.1,
-      map,
-      clickable: true,
-      bounds: {
-        south: 10.531970474725403,
-        west: 76.20015976569827,
-        north: 10.543615343893695,
-        east: 76.22968552253421,
-      },
-    });
+    // const rectangle2 = new window.google.maps.Rectangle({
+    //   strokeColor: "#169100",
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   fillColor: "#169100",
+    //   fillOpacity: 0.1,
+    //   map,
+    //   clickable: true,
+    //   bounds: {
+    //     south: 10.531970474725403,
+    //     west: 76.20015976569827,
+    //     north: 10.543615343893695,
+    //     east: 76.22968552253421,
+    //   },
+    // });
 
-    const rectangle3 = new window.google.maps.Rectangle({
-      strokeColor: "#095ab0",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#095ab0",
-      fillOpacity: 0.1,
-      map,
-      clickable: true,
-      bounds: {
-        south: 10.512013806076538,
-        west: 76.20024674486626,
-        north: 10.531422933419412,
-        east: 76.21024602007378,
-      },
-    });
+    // const rectangle3 = new window.google.maps.Rectangle({
+    //   strokeColor: "#095ab0",
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   fillColor: "#095ab0",
+    //   fillOpacity: 0.1,
+    //   map,
+    //   clickable: true,
+    //   bounds: {
+    //     south: 10.512013806076538,
+    //     west: 76.20024674486626,
+    //     north: 10.531422933419412,
+    //     east: 76.21024602007378,
+    //   },
+    // });
 
-    rectangle.setMap(map);
-    rectangle2.setMap(map);
-    rectangle3.setMap(map);
+    // rectangle.setMap(map);
+    // rectangle2.setMap(map);
+    // rectangle3.setMap(map);
 
-    const rectangleCenter2 = rectangle2.getBounds().getCenter();
-    const marker1 = new window.google.maps.Marker({
-      position: rectangleCenter2,
-      label: {
-        text: "SECTOR 1",
-        color: "#169100",
-        fontSize: "20px",
-        fontWeight: "bold",
-      },
-      icon: icon,
-      optimized: false,
-    });
+    // const rectangleCenter2 = rectangle2.getBounds().getCenter();
+    // const marker1 = new window.google.maps.Marker({
+    //   position: rectangleCenter2,
+    //   label: {
+    //     text: "SECTOR 1",
+    //     color: "#169100",
+    //     fontSize: "20px",
+    //     fontWeight: "bold",
+    //   },
+    //   icon: icon,
+    //   optimized: false,
+    // });
 
-    marker1.setMap(map);
+    // marker1.setMap(map);
 
-    const rectangleCenter3 = rectangle3.getBounds().getCenter();
-    const marker2 = new window.google.maps.Marker({
-      position: rectangleCenter3,
-      label: {
-        text: "SECTOR 2",
-        color: "#095ab0",
-        fontSize: "20px",
-        fontWeight: "bold",
-      },
-      icon: icon,
-      optimized: false,
-    });
+    // const rectangleCenter3 = rectangle3.getBounds().getCenter();
+    // const marker2 = new window.google.maps.Marker({
+    //   position: rectangleCenter3,
+    //   label: {
+    //     text: "SECTOR 2",
+    //     color: "#095ab0",
+    //     fontSize: "20px",
+    //     fontWeight: "bold",
+    //   },
+    //   icon: icon,
+    //   optimized: false,
+    // });
 
-    marker2.setMap(map);
+    // marker2.setMap(map);
   }, []);
 
   const center = useMemo(() => ({ lat: 10.5115487, lng: 76.1882293 }), []);
@@ -203,12 +203,14 @@ const Event = () => {
                           });
                         });
                         console.log(JSON.stringify(array));
+                        setSectorModal(true);
                       }}
                       onOverlayComplete={(e) => {
                         if (e.type === "rectangle") {
                           console.log(
                             JSON.stringify(e.overlay.getBounds().toJSON())
                           );
+                          setSectorModal(true);
                         } else if (e.type === "marker") {
                           console.log(
                             JSON.stringify(e.overlay.getPosition().toJSON())
@@ -244,11 +246,13 @@ const Event = () => {
               Border
             </button>
 
-            <div className="w-[181px] h-[45px] flex justify-center items-center left-791 top-754 bg-blue-900 shadow-md rounded-lg text-white font-semibold ">
-              <button
-                onClick={() => setFinishModal(true)}
-                className="mr-3 flex justify-center items-center"
-              >
+            <div
+              onClick={() => {
+                setFinishModal(true);
+              }}
+              className="cursor-pointer w-[181px] h-[45px] flex justify-center items-center left-791 top-754 bg-blue-900 shadow-md rounded-lg text-white font-semibold "
+            >
+              <button className="mr-3 flex justify-center items-center">
                 <GoCheck size={25} /> <span className="ml-3">Finish</span>
               </button>
             </div>
