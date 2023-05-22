@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 import "./Login.css";
 import { api } from "../../utils/utils";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [pass, setPass] = useState("");
+	const [showPassword, setShowPassword] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -17,7 +19,7 @@ const Login = () => {
 			api.post("/user/login", { email, password: pass })
 				.then((response) => {
 					localStorage.setItem("token", response.data?.token);
-					navigate("/home");
+					navigate("/");
 				})
 				.catch((err) => alert(err.response.data.error));
 		} else {
@@ -62,15 +64,29 @@ const Login = () => {
 								autoComplete="off"
 								required
 							/>
-							<input
-								value={pass}
-								onChange={(e) => setPass(e.target.value)}
-								type="password"
-								placeholder="Password"
-								id="password"
-								name="password"
-								required
-							/>
+							<div className="flex justify-between items-center">
+								<input
+									value={pass}
+									onChange={(e) => setPass(e.target.value)}
+									type={showPassword ? "text" : "password"}
+									placeholder="Password"
+									id="password"
+									name="password"
+									required
+								/>
+								<div
+									className="p-2"
+									onClick={() =>
+										setShowPassword(!showPassword)
+									}
+								>
+									{showPassword ? (
+										<FiEyeOff size={20} />
+									) : (
+										<FiEye size={20} />
+									)}
+								</div>
+							</div>
 							<button type="submit">Login</button>
 							<br />
 							<p>
