@@ -17,7 +17,7 @@ const Login = () => {
 			api.post("/user/login", { email, password: pass })
 				.then((response) => {
 					localStorage.setItem("token", response.data?.token);
-					navigate("/home");
+					navigate("/");
 				})
 				.catch((err) => alert(err.response.data.error));
 		} else {
