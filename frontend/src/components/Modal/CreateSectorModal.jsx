@@ -10,7 +10,7 @@ function CreateSectorModal({ open, onClose }) {
 	return (
 		<div
 			onClick={onClose}
-			className="overlay  bg-zinc-700 fixed w-full h-full flex justify-center items-center z-[2050]"
+			className="fixed overlay bg-[rgba(0,0,0,0.5)] top-0 left-0 w-full h-full flex justify-center items-center z-[2050]"
 		>
 			<div
 				onClick={(e) => {

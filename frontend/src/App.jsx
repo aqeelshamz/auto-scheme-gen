@@ -1,12 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Scheme from "./Pages/Scheme/Scheme";
+import Event from "./Pages/Event/Event";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Login/Signup";
 
 const App = () => {
-
-	// Comment this block to bypass login
 	if (
 		!localStorage.getItem("token") &&
 		window.location.pathname !== "/login" &&
@@ -19,10 +17,10 @@ const App = () => {
 		<>
 			<Router>
 				<Routes>
-					<Route exact path="/" element={<Scheme />} />
+					<Route exact path="/" element={<Home />} />
 					<Route exact path="/login" element={<Login />} />
 					<Route exact path="/signup" element={<Signup />} />
-					<Route exact path="/home" element={<Home />} />
+					<Route exact path="/event/:eventId" element={<Event />} />
 				</Routes>
 			</Router>
 		</>
