@@ -6,8 +6,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CirclePicker } from "react-color";
 import axios from "axios";
-
-// toastify
 import { toast } from "react-toastify";
 
 function CreateEventModal({ open, onClose }) {

@@ -3,7 +3,6 @@ import "./EventModal.css";
 
 function EventModal() {
 	const [modal, setModal] = useState(false);
-
 	const toggleModal = () => setModal(!modal);
 
 	return (

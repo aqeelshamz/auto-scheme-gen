@@ -158,15 +158,15 @@ const Event = () => {
   const getEventData = () => {
     api
       .get(`/events/${eventId}`)
-      .then((response) => {	
-		console.log(response.data)
-		setEventData(response.data)
+      .then((response) => {
+        console.log(response.data);
+        setEventData(response.data);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-	getEventData();
+    getEventData();
   }, []);
 
   return (

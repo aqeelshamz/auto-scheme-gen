@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import EventCard from "../../components/EventCard/EventCard";
 import CreateEventModal from "../../components/Modal/CreateEventModal";
 import Navbar from "../../components/Navbar/Navbar";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { api, hexToRgba } from "../../utils/utils";
 
 function Home() {
   const [openModal, setOpenModal] = useState(false);
   const [search, setSearch] = useState("");
 
-  const PORT = "http://localhost:6001/";
-
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${PORT}events`);
+      const response = await api.get(`/events`);
 
       response.data.forEach((obj) => {
         obj.startDate = new Date(obj.startDate);
@@ -35,76 +33,6 @@ function Home() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  function hexToRgba(hex, opacity = 1) {
-    hex = hex.replace("#", "");
-
-    if (hex.length === 3) {
-      hex = hex
-        .split("")
-        .map((char) => char + char)
-        .join("");
-    }
-
-    const r = parseInt(hex.slice(0, 2), 16);
-    const g = parseInt(hex.slice(2, 4), 16);
-    const b = parseInt(hex.slice(4, 6), 16);
-
-    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-  }
-
-  const events = [
-    {
-      name: "Birthday Party",
-      date: new Date("2023-05-15"),
-      color: "#FF69B4",
-    },
-    {
-      name: "Graduation Ceremony",
-      date: new Date("2023-06-10"),
-      color: "#87CEEB",
-    },
-    {
-      name: "New Year Celebration",
-      date: new Date("2024-01-01"),
-      color: "#FFD700",
-    },
-    {
-      name: "Easter Sunday",
-      date: new Date("2023-04-16"),
-      color: "#00FF7F",
-    },
-    {
-      name: "Independence Day",
-      date: new Date("2023-07-04"),
-      color: "#FFA500",
-    },
-    {
-      name: "Halloween Party",
-      date: new Date("2023-10-31"),
-      color: "#FF6347",
-    },
-    {
-      name: "Thanksgiving Day",
-      date: new Date("2023-11-23"),
-      color: "#008000",
-    },
-    {
-      name: "Christmas Day",
-      date: new Date("2023-12-25"),
-      color: "#FF0000",
-    },
-    {
-      name: "New Year's Eve",
-      date: new Date("2023-12-31"),
-      color: "#9400D3",
-    },
-    {
-      name: "Valentine's Day",
-      date: new Date("2024-02-14"),
-      color: "#800080",
-    },
-  ];
 
   return !localStorage.getItem("token") &&
     window.location.pathname !== "/login" &&
