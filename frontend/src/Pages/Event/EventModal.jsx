@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./SchemeModal.css";
+import "./EventModal.css";
 
-function SchemeModal() {
+function EventModal() {
 	const [modal, setModal] = useState(false);
 
 	const toggleModal = () => setModal(!modal);
@@ -42,4 +42,4 @@ function SchemeModal() {
 	);
 }
 
-export default SchemeModal;
+export default EventModal;
