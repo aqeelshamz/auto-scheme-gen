@@ -75,7 +75,7 @@ const Signup = () => {
 						autoComplete="off"
 						required
 					/>
-					<div className="flex justify-between items-center">
+					<div className="relative">
 						<input
 							value={pass}
 							onChange={(e) => setPass(e.target.value)}
@@ -86,7 +86,7 @@ const Signup = () => {
 							required
 						/>
 						<div
-							className="p-2"
+							className="absolute h-full flex flex-col justify-center top-0 right-4 cursor-pointer"
 							onClick={() => setShowPassword(!showPassword)}
 						>
 							{showPassword ? (
@@ -96,7 +96,7 @@ const Signup = () => {
 							)}
 						</div>
 					</div>
-					<div className="flex justify-between items-center">
+					<div className="relative">
 						<input
 							value={confirmPass}
 							onChange={(e) => setConfirmPass(e.target.value)}
@@ -107,7 +107,7 @@ const Signup = () => {
 							required
 						/>
 						<div
-							className="p-2"
+							className="absolute h-full flex flex-col justify-center top-0 right-4 cursor-pointer"
 							onClick={() => setShowConfirmPassword(!showConfirmPassword)}
 						>
 							{showConfirmPassword ? (
