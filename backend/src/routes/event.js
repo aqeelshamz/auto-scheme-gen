@@ -30,7 +30,7 @@ router
   })
 
   // Get a single event by ID
-  .get("/:id", async (req, res) => {
+  .get("/event/:id", async (req, res) => {
     const eventId = req.params.id;
 
     try {
@@ -173,7 +173,7 @@ router
   })
 
   // Get all recent events
-  .get('/recent/event', async (req, res) => {
+  .get('/recent', async (req, res) => {
     try {
       const events = await EventModel.find().sort({ lastOpened: -1 }).limit(5);
       return res.json(events);
