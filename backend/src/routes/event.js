@@ -173,7 +173,7 @@ router
   })
 
   // Get all recent events
-  .get('/recent', async (req, res) => {
+  .get('/recent/event', async (req, res) => {
     try {
       const events = await EventModel.find().sort({ lastOpened: -1 }).limit(5);
       return res.json(events);
