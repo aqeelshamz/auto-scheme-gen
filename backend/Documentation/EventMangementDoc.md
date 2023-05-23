@@ -221,7 +221,7 @@ Delete an event by its ID.
 Update the last opened event by its ID.
 
 - Method: POST
-- URL: `/events/:id/last-opened`
+- URL: `/events/:id/recent`
 
 #### Parameters
 
@@ -234,7 +234,7 @@ Update the last opened event by its ID.
 
 ```json
 {
-  "message": "Last opened event updated successfully"
+  "message": "recent event updated successfully"
 }
 ```
 
@@ -245,29 +245,12 @@ Update the last opened event by its ID.
 Get the last opened event by its ID.
 
 - Method: GET
-- URL: `/events/:id/last-opened`
-
-#### Parameters
-
-- `id` (required): The ID of the event.
+- URL: `/events/recent`
 
 #### Response
 
 - Status: 200 OK
 - Body:
 
-```json
-{
-  "name": "Event 1",
+Reponse will have 5 recent events.
 
-
-  "startDate": "2023-05-21T08:00:00.000Z",
-  "endDate": "2023-05-21T12:00:00.000Z",
-  "color": "#ff0000",
-  "type": 1,
-  "_id": "event_id_1",
-  "createdAt": "2023-05-20T10:00:00.000Z",
-  "updatedAt": "2023-05-20T13:00:00.000Z",
-  "lastOpened": "2023-05-20T14:00:00.000Z"
-}
-```
