@@ -3,8 +3,9 @@ import EventCard from "../../components/EventCard/EventCard";
 import CreateEventModal from "../../components/Modal/CreateEventModal";
 import Navbar from "../../components/Navbar/Navbar";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { api, hexToRgba } from "../../utils/utils";
+import { FiClock, FiCalendar } from "react-icons/fi";
 
 function Home() {
   const [openModal, setOpenModal] = useState(false);
@@ -89,7 +90,10 @@ function Home() {
 
           {/*Recent event cards start */}
           <>
-            <p className="text-2xl font-bold mt-3">Recent Events</p>
+            <div className="flex items-center mt-3">
+              <FiClock className="text-2xl mr-2" />
+              <p className="text-2xl font-bold">Recent Events</p>
+            </div>
             <div className="flex flex-wrap justify-start my-10">
               {data
                 .filter((item) => {
@@ -119,7 +123,10 @@ function Home() {
 
           {/*All event cards start */}
           <>
-            <p className="text-2xl font-bold mt-3">All Events</p>
+          <div className="flex items-center mt-3">
+              <FiCalendar className="text-2xl mr-2" />
+              <p className="text-2xl font-bold">All Events</p>
+            </div>
             <div className="flex flex-wrap justify-start my-10 ">
               {data
                 .filter((item) => {
@@ -151,12 +158,12 @@ function Home() {
             open={openModal}
             onClose={() => {
               setOpenModal(false);
-			  fetchData();
+              fetchData();
             }}
           />
         </div>
       </div>
-	  <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

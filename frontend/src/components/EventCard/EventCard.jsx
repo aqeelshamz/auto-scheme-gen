@@ -11,7 +11,7 @@ function EventCard(props) {
 		>
 			<div
 				style={props.style}
-				className={`border-box w-[260px] h-[125px] ${props.color} flex justify-center items-center text-xl font-semibold`}
+				className={`p-3 text-ellipsis border-box w-[260px] h-[125px] ${props.color} flex justify-center items-center text-xl font-semibold`}
 			>
 				{props.title}
 			</div>
