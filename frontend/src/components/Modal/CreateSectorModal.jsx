@@ -5,6 +5,7 @@ import { CirclePicker } from "react-color";
 import { useState } from "react";
 import { api } from "../../utils/utils";
 import { toast } from "react-toastify";
+import { FiCheck, FiSquare, FiHexagon } from "react-icons/fi";
 
 function CreateSectorModal({ eventId, open, type, data, onClose }) {
   const [loading, setLoading] = useState(false);
@@ -77,7 +78,16 @@ function CreateSectorModal({ eventId, open, type, data, onClose }) {
         {/* <img src={nft} alt='/' /> */}
         <div className="m-4">
           <div className="flex justify-between">
-            <p className="font-semibold text-xl">New Sector</p>
+            <p className="flex items-center font-semibold text-xl">
+              {
+                [
+                  null,
+                  <FiSquare className="mr-2" />,
+                  <FiHexagon className="mr-2" />,
+                ][type]
+              }
+              New Sector
+            </p>
             <button
               onClick={onClose}
               className="absolute top-0 right-0 p-2 text-gray-500 hover:text-gray-800 focus:outline-none"
@@ -109,9 +119,10 @@ function CreateSectorModal({ eventId, open, type, data, onClose }) {
 
             <button
               type="submit"
-              className="block w-[424px] h-[35px] mt-10 px-4 py-2 bg-blue-900 text-white  rounded-md text-xs text-center"
+              className="flex items-center justify-center w-[424px] h-[35px] mt-10 bg-blue-900 text-white  rounded-md text-sm text-center"
             >
-              Create Sector
+              <FiCheck className="mr-2" />
+              <p>Create Sector</p>
             </button>
           </form>
         </div>

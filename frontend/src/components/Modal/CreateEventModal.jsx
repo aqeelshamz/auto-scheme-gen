@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CirclePicker } from "react-color";
 import { toast } from "react-toastify";
 import { api } from "../../utils/utils";
+import { FiCalendar, FiUsers, FiCheck} from "react-icons/fi"
 
 function CreateEventModal({ open, onClose }) {
   const [loading, setLoading] = useState(false);
@@ -127,7 +128,7 @@ function CreateEventModal({ open, onClose }) {
         {/* <img src={nft} alt='/' /> */}
         <div className="m-4">
           <div className="flex justify-between">
-            <p className="font-semibold text-xl">New Event</p>
+            <p className="flex items-center font-semibold text-xl"><FiCalendar className="mr-2"/>New Event</p>
             <button
               onClick={onClose}
               className="absolute top-0 right-0 p-2 text-gray-500 hover:text-gray-800 focus:outline-none"
@@ -141,7 +142,7 @@ function CreateEventModal({ open, onClose }) {
               onChange={onMutate}
               value={name}
               id="name"
-              className="block w-[424px] h-[35px] mt-10 px-4 py-2 bg-blue-100 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500 text-xs"
+              className="block w-[424px] h-[35px] mt-7 px-4 py-2 bg-blue-100 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500 text-xs"
               placeholder="Event Name"
             />
 
@@ -183,9 +184,9 @@ function CreateEventModal({ open, onClose }) {
                 <option value="0" selected>
                   Select type
                 </option>
-                <option value="1">type 1</option>
-                <option value="2">type 2</option>
-                <option value="3">type 3</option>
+                <option value="1">VIP Event</option>
+                <option value="2">Private Event</option>
+                <option value="3">Public Event</option>
               </select>
 
               <div className="absolute inset-y-0 right-3 flex items-center px-2 pointer-events-none">
@@ -209,7 +210,7 @@ function CreateEventModal({ open, onClose }) {
               ]}
             />
 
-            <p className="mt-3 mb-3 font-semibold text-base">Members</p>
+            <p className="flex items-center my-4 font-semibold text-base"><FiUsers className="mr-2"/>Members</p>
             <div className="flex  ">
               <div className="flex items-center mr-7">
                 <p className="mr-5 font-semibold">ISH</p>
@@ -268,9 +269,9 @@ function CreateEventModal({ open, onClose }) {
 
             <button
               type="submit"
-              className="block w-[424px] h-[35px] mt-10 px-4 py-2 bg-blue-900 text-white  rounded-md text-xs text-center"
+              className="flex items-center justify-center w-[424px] h-[35px] mt-10 bg-blue-900 text-white  rounded-md text-sm text-center"
             >
-              Create Event
+              <FiCheck className="mr-2"/><p>Create Event</p>
             </button>
           </form>
         </div>
