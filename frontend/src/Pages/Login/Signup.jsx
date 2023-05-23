@@ -19,14 +19,17 @@ const Signup = () => {
 		setName(e.target[0].value);
 		setEmail(e.target[1].value);
 		setPass(e.target[2].value);
-		if (name && email && pass) {
-			api.post("/user/signup", { name, email, password: pass })
-				.then((response) => {
-					navigate("/login");
-				})
-				.catch((err) => alert(err.response.data.error));
-		} else {
-			alert("Please fill all the fields");
+
+		if (confirmPass === pass) {
+			if (name && email && pass) {
+				api.post("/user/signup", { name, email, password: pass })
+					.then((response) => {
+						navigate("/login");
+					})
+					.catch((err) => alert(err.response.data.error));
+			} else {
+				alert("Please fill all the fields");
+			}
 		}
 	};
 
@@ -108,7 +111,9 @@ const Signup = () => {
 						/>
 						<div
 							className="absolute h-full flex flex-col justify-center top-0 right-4 cursor-pointer"
-							onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+							onClick={() =>
+								setShowConfirmPassword(!showConfirmPassword)
+							}
 						>
 							{showConfirmPassword ? (
 								<FiEyeOff size={20} />
@@ -124,7 +129,17 @@ const Signup = () => {
 						</p>
 					)}
 
-					<button type="submit">Sign up</button>
+					<button
+						onClick={(e) => {
+							if (confirmPass != pass) {
+								alert("Password do not match");
+								window.location.reload(true);
+							}
+						}}
+						type="submit"
+					>
+						Sign up
+					</button>
 					<br />
 					<p>
 						Already have an account?&ensp;
