@@ -1,14 +1,32 @@
 import express from "express";
 import SectorModel from "../models/sectorModel.js";
 import sampleData from "../util/sampleData.js";
+import joi from "joi";
 
 const router = express.Router();
 
 // CREATE a new sector
 router
   .post("/", async (req, res) => {
+    const schema = joi.object({
+      eventId: joi.string().required(),
+      name: joi.string().required(),
+      color: joi.string().required(),
+      data: joi.required(),
+      type: joi.number().required().valid(1, 2), // 1 = Rectangle, 2 = Polygon
+    });
+
     try {
-      const sector = new SectorModel(req.body);
+      const { eventId, name, color, data, type } = await schema.validateAsync(
+        req.body
+      );
+      const sector = new SectorModel({
+        eventId,
+        name,
+        color,
+        data,
+        type,
+      });
       await sector.save();
       res.status(201).json(sector);
     } catch (err) {
@@ -32,8 +50,8 @@ router
   .post("/sample/:eventid", async (req, res) => {
     try {
       var sector = [];
-      for(const s of sampleData.sectorsSampleData){
-        if(s.eventId == req.params.eventid){
+      for (const s of sampleData.sectorsSampleData) {
+        if (s.eventId == req.params.eventid) {
           sector.push(s);
         }
       }

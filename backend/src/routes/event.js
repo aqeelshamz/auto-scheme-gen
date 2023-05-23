@@ -53,10 +53,11 @@ router
       endDate: joi.string().required(),
       color: joi.string().required(),
       type: joi.number().required().valid(1, 2, 3),
+      members: joi.object().required(),
     });
 
     try {
-      const { name, startDate, endDate, color, type } =
+      const { name, startDate, endDate, color, members, type } =
         await schema.validateAsync(req.body);
       console.log(moment(endDate).format("YYYY-MM-DD HH:mm:ss"));
       // Check if an event with the same name already exists
@@ -74,6 +75,7 @@ router
         endDate: moment(endDate).toISOString(),
         color,
         type,
+        members,
       });
 
       await event.save();

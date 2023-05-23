@@ -1,23 +1,21 @@
 import { useState } from "react";
-import "./HomeModal.css";
+import "./EventModal.css";
 
-function HomeModal() {
+function EventModal() {
 	const [modal, setModal] = useState(false);
-
 	const toggleModal = () => setModal(!modal);
 
 	return (
 		<>
 			<button onClick={toggleModal} className="btn-modal">
-				New Event
+				Finish Event
 			</button>
 
 			{modal && (
 				<div className="modal">
 					<div onClick={toggleModal} className="overlay">
 						<div className="modal-content">
-							<h1>New Event</h1>
-							<br />
+							<h1>Finish Event</h1><br />
 							<p>
 								Lorem ipsum dolor sit amet consectetur adipisicing elit.
 								Voluptatem culpa nobis fugit quo laudantium necessitatibus,
@@ -31,7 +29,10 @@ function HomeModal() {
 							<button className="close-modal" onClick={toggleModal}>
 								X
 							</button>
-							<button className="btn-modal">Create Event</button>
+							<div className="btn-container">
+								<button className="btn-modal">Download XLSX</button>
+								<button className="btn-modal">Download PDF</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -40,4 +41,4 @@ function HomeModal() {
 	);
 }
 
-export default HomeModal;
+export default EventModal;
