@@ -151,12 +151,12 @@ router
   })
 
 
-  // Update last opened event
-  .post('/:id/last-opened', async (req, res) => {
+  // Update recent event
+  .post('/:id/recent', async (req, res) => {
     const { id } = req.params;
     
     try {
-      const event = await Event.findById(id);
+      const event = await EventModel.findById(id);
       if (!event) {
         return res.status(404).json({ error: 'Event not found' });
       }
@@ -164,27 +164,21 @@ router
       event.lastOpened = new Date();
       await event.save();
   
-      return res.json({ message: 'Last opened event updated successfully' });
+      return res.json({ message: 'recent event updated successfully' });
     } catch (error) {
       return res.status(500).json({ error: 'Internal server error' });
     }
   })
 
-
-  // Get last opened event
-  .get('/:id/last-opened', async (req, res) => {
-    const { id } = req.params;
-    
+  // Get all recent events
+  .get('/recent', async (req, res) => {
     try {
-      const event = await Event.findById(id);
-      if (!event) {
-        return res.status(404).json({ error: 'Event not found' });
-      }
-  
-      return res.json(event);
+      const events = await EventModel.find().sort({ lastOpened: -1 }).limit(5);
+      return res.json(events);
     } catch (error) {
       return res.status(500).json({ error: 'Internal server error' });
     }
   });
+
 
 export default router;
