@@ -97,13 +97,13 @@ function CreateEventModal({ open, onClose }) {
     try {
       const response = await api.post('/events', formDataCopy);
       console.log(response.data); // Handle successful form submission
-      toast.success("Event  saved");
+      toast.success("Event created!");
       onClose();
+      window.location.href = `/event/${response.data._id}`;
       setFormData(initFormData);
-      // navigate("/admin");
     } catch (error) {
       setLoading(false);
-      toast.error("Event  not saved");
+      toast.error("Failed to create event");
       console.log(error);
       onClose();
       setFormData(initFormData);

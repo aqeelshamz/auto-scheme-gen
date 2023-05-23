@@ -79,9 +79,9 @@ function Home() {
           {/*new event start */}
           <button
             onClick={() => setOpenModal(true)}
-            className="flex justify-start f my-10 "
+            className="flex justify-start f my-10 hover:scale-105 duration-75"
           >
-            <div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-md flex justify-center items-center text-xl font-semibold dark:md:hover:bg-fuchsia-600">
+            <div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-md flex justify-center items-center text-xl font-semibold dark:md:hover:bg-[#293073] hover:text-[white]">
               + New Event
             </div>
           </button>
