@@ -7,11 +7,11 @@ function EventCard(props) {
 
 	return (
 		<Link to={`/event/${props.id}`}
-			className={`hover:scale-105 duration-75 border-box mr-6 mb-6 overflow-hidden border-2  border-black rounded-md  justify-center items-center text-xl text-[${props.color}] font-semibold`}
+			className={`hover:scale-105 duration-75 border-box mr-6 mb-6 overflow-hidden border-2  border-black rounded-lg  justify-center items-center text-xl text-[${props.color}] font-semibold`}
 		>
 			<div
 				style={props.style}
-				className={`border-box w-[260px] h-[125px] rounded-sm ${props.color} flex justify-center items-center text-xl font-semibold`}
+				className={`border-box w-[260px] h-[125px] ${props.color} flex justify-center items-center text-xl font-semibold`}
 			>
 				{props.title}
 			</div>
