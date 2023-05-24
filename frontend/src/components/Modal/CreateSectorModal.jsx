@@ -9,7 +9,7 @@ import { FiCheck, FiSquare, FiHexagon } from "react-icons/fi";
 
 function CreateSectorModal({ eventId, open, type, data, onClose }) {
   const [loading, setLoading] = useState(false);
-  const [color, setColor] = useState("#779FEC");
+  const [color, setColor] = useState("#EC7777");
 
   //New sector data
   const initFormData = {
@@ -29,6 +29,10 @@ function CreateSectorModal({ eventId, open, type, data, onClose }) {
         [e.target.id]: e.target.value,
       }));
     }
+  };
+
+  const handleColorChange = (newColor) => {
+    setColor(newColor.hex);
   };
 
   const onSubmit = async (e) => {
@@ -104,9 +108,10 @@ function CreateSectorModal({ eventId, open, type, data, onClose }) {
               placeholder="Sector Name"
             />
             <CirclePicker
+              onChange={handleColorChange}
               className="mt-8"
               circleSize={28}
-              color="#AAEC77"
+              color={color}
               colors={[
                 "#EC7777",
                 "#AAEC77",
