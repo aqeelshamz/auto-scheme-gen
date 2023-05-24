@@ -12,10 +12,12 @@ function Home() {
   const [search, setSearch] = useState("");
 
   const [data, setData] = useState([]);
+  const [recentData, setRecentData] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await api.get(`/events`);
+      // const recentResponse = await api.get(`/recent`);
 
       response.data.forEach((obj) => {
         obj.startDate = new Date(obj.startDate);
@@ -24,7 +26,33 @@ function Home() {
         obj.updatedAt = new Date(obj.updatedAt);
       });
 
+      // recentResponse.data.forEach((obj) => {
+      //   obj.startDate = new Date(obj.startDate);
+      // });
+
       setData(response.data);
+      // setRecentData(recentResponse.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchResentData = async () => {
+    try {
+
+      const response = await api.get(`/recent`);
+
+      response.data.forEach((obj) => {
+        obj.startDate = new Date(obj.startDate);
+        obj.createdAt = new Date(obj.createdAt);
+        obj.endDate = new Date(obj.endDate);
+        obj.updatedAt = new Date(obj.updatedAt);
+      });
+
+
+
+      setRecentData(response.data);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -33,6 +61,7 @@ function Home() {
 
   useEffect(() => {
     fetchData();
+    fetchResentData();
   }, []);
 
   return !localStorage.getItem("token") &&
@@ -95,7 +124,7 @@ function Home() {
               <p className="text-2xl font-bold">Recent Events</p>
             </div>
             <div className="flex flex-wrap justify-start my-10">
-              {data
+              {recentData
                 .filter((item) => {
                   if (search === "") return item;
                   else if (
@@ -123,7 +152,7 @@ function Home() {
 
           {/*All event cards start */}
           <>
-          <div className="flex items-center mt-3">
+            <div className="flex items-center mt-3">
               <FiCalendar className="text-2xl mr-2" />
               <p className="text-2xl font-bold">All Events</p>
             </div>
