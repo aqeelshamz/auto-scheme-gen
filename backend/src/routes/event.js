@@ -183,10 +183,10 @@ router
 
   // Create a duplicate event
   .post("/duplicate/:id", async (req, res) => {
-    const eventId = req.params.id;
+    const { id } = req.params;
 
     try {
-      const event = await EventModel.findById(eventId);
+      const event = await EventModel.findById(id);
       if (!event) {
         return res.status(404).json({ error: "Event not found" });
       }
@@ -201,7 +201,7 @@ router
       });
 
       await duplicatedEvent.save();
-      
+
       res.json(duplicatedEvent);
     } catch (err) {
       console.error(err);
