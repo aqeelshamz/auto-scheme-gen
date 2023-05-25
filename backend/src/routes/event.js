@@ -198,6 +198,7 @@ router
         color: event.color,
         type: event.type,
         members: event.members,
+        boundary: event.boundary,
       });
 
       await duplicatedEvent.save();
