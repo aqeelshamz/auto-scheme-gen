@@ -152,35 +152,61 @@ router
     }
   })
 
-
   // Update recent event
-  .post('/:id/recent', async (req, res) => {
+  .post("/:id/recent", async (req, res) => {
     const { id } = req.params;
-    
+
     try {
       const event = await EventModel.findById(id);
       if (!event) {
-        return res.status(404).json({ error: 'Event not found' });
+        return res.status(404).json({ error: "Event not found" });
       }
-  
+
       event.lastOpened = new Date();
       await event.save();
-  
-      return res.json({ message: 'recent event updated successfully' });
+
+      return res.json({ message: "recent event updated successfully" });
     } catch (error) {
-      return res.status(500).json({ error: 'Internal server error' });
+      return res.status(500).json({ error: "Internal server error" });
     }
   })
 
   // Get all recent events
-  .get('/recent', async (req, res) => {
+  .get("/recent", async (req, res) => {
     try {
       const events = await EventModel.find().sort({ lastOpened: -1 }).limit(5);
       return res.json(events);
     } catch (error) {
-      return res.status(500).json({ error: 'Internal server error' });
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  })
+
+  // Create a duplicate event
+  .post("/duplicate/:id", async (req, res) => {
+    const eventId = req.params.id;
+
+    try {
+      const event = await EventModel.findById(eventId);
+      if (!event) {
+        return res.status(404).json({ error: "Event not found" });
+      }
+
+      const duplicatedEvent = new EventModel({
+        name: event.name + " (Copy)",
+        startDate: event.startDate,
+        endDate: event.endDate,
+        color: event.color,
+        type: event.type,
+        members: event.members,
+      });
+
+      await duplicatedEvent.save();
+      
+      res.json(duplicatedEvent);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error" });
     }
   });
-
 
 export default router;
