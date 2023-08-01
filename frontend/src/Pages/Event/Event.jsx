@@ -175,7 +175,7 @@ const Event = () => {
     // });
 
     // marker2.setMap(map);
-  }, []);
+  }, [eventData]);
 
   const center = useMemo(() => ({ lat: 10.5115487, lng: 76.1882293 }), []);
 

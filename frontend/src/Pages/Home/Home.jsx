@@ -106,18 +106,27 @@ function Home() {
 
         {/* search bar end */}
         <div className="m-10">
-          {/*new event start */}
-          <button
-            onClick={() => setOpenModal(true)}
-            className="flex justify-start f my-10 hover:scale-105 duration-75"
-          >
-            <div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-lg flex justify-center items-center text-xl font-semibold dark:md:hover:bg-[#293073] hover:text-[white]">
-              + New Event
-            </div>
-          </button>
-          {/* new event end */}
-
-          {/*Recent event cards start */}
+          <div className="flex flex-wrap">
+            {/*new event start */}
+            <button
+              onClick={() => setOpenModal(true)}
+              className="flex justify-start f my-10 hover:scale-105 duration-75"
+            >
+              <div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-lg flex justify-center items-center text-xl font-semibold dark:md:hover:bg-[#293073] hover:text-[white]">
+                + New Event
+              </div>
+            </button>
+            {/* new event end */}
+            <button
+              onClick={() => setOpenModal(true)}
+              className="flex justify-start f my-10 hover:scale-105 duration-75 ml-10"
+            >
+              <div class="border-box  w-[232px] h-[142px] left-[23px] top-[121px] border-2 border-black rounded-lg flex justify-center items-center text-xl font-semibold dark:md:hover:bg-[#293073] hover:text-[white]">
+                + New Event
+              </div>
+            </button>
+            {/*Recent event cards start */}
+          </div>
           <>
             <div className="flex items-center mt-3">
               <FiClock className="text-2xl mr-2" />
