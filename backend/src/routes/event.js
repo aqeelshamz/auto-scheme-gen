@@ -6,6 +6,7 @@ import validate from "../util/userValidate.js";
 import joi from "joi";
 import moment from "moment";
 import sampleData from "../util/sampleData.js";
+import Sector from "../models/sectorModel.js";
 
 const router = express.Router();
 
@@ -209,5 +210,64 @@ router
       res.status(500).json({ error: "Internal server error" });
     }
   });
+
+  //EVENT MEMBERS DATA
+  // Get Event members data
+  router.post("/members", async (req, res) => {
+    //body - eventId
+    // const event = await Event.findById();
+    // const sectors = await Sector.find({ eventId: event._id });
+
+    // var membersData = {
+    //   SI: 0,
+    //   ISH: 0,
+    //   CPO: 0,
+    //   .....
+    // };
+
+    // for(const member of sectors.members){
+
+    // }
+
+    // {
+    //   eventId: "1234567890",
+    //   eventName: "Thrissur Pooram",
+    //   ....
+    //   sectors: [
+    //     {
+    //       sectorId: "126781687"
+    //       sectorName: "Sector A",
+    //       members: {
+    //         SI: 4,
+    //         ISH: 10,
+    //         CPO: 3
+    //         ...
+    //         ...
+    //       }
+    //     },
+    //     {
+    //       sectorId: "126781687"
+    //       sectorName: "Sector A",
+    //       members: {
+    //         SI: 4,
+    //         ISH: 10,
+    //         CPO: 3
+    //         ...
+    //         ...
+    //       }
+    //     }
+    //   ]
+    // }
+  })
+
+  // Generate PDF
+  .post("/members/pdf", async (req, res) => {
+    //body - eventId
+  })
+
+  // Generate excel
+  .post("/members/excel", async (req, res) => {
+    //body - eventId
+  })
 
 export default router;

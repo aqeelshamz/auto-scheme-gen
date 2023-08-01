@@ -31,8 +31,6 @@ mongoose
   })
   .catch((error) => console.log(`${error} did not connect`));
 
-
-
 //* ROUTES
 app.use("/user", userRoutes);
 app.use("/events", eventRoutes);

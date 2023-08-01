@@ -14,6 +14,12 @@ const sectorSchema = new mongoose.Schema({
     enum: [1, 2], // 1 = Rectangle, 2 = Polygon
     required: true,
   },
+  members: [
+    {
+      type: Number, //0 - ISH, 1 - SI, 2 - CPO, 3 - ICPO
+      coordinates: { type: mongoose.Schema.Types.Mixed },
+    }
+  ],
   data: {
     type: mongoose.Schema.Types.Mixed,
     required: true,

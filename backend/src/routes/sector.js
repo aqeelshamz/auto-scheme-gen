@@ -111,4 +111,16 @@ router
     }
   });
 
+  router.post("/assign-members", async (req, res)=>{
+    //body 
+    /*
+
+    {
+      type: 0,                 // 0 = ISH, 1 = SI, 2 = CPO, 3 = ICPO
+      coordinates: {lat: "", lon: ""},         // coordinates of the point
+    }
+
+    */
+  })
+
 export default router;
