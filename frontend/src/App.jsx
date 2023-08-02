@@ -3,6 +3,7 @@ import Event from "./Pages/Event/Event";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Login/Signup";
+import Finish from "./Pages/Finish/Finish";
 
 const App = () => {
 	if (
@@ -21,6 +22,7 @@ const App = () => {
 					<Route exact path="/login" element={<Login />} />
 					<Route exact path="/signup" element={<Signup />} />
 					<Route exact path="/event/:eventId" element={<Event />} />
+					<Route exact path="/finish/:eventId" element={<Finish />} />
 				</Routes>
 			</Router>
 		</>

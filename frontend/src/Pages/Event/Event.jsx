@@ -8,14 +8,13 @@ import "./Event.css";
 import { googleApiKey } from "../../utils/utils";
 import { policeIcon, transparentIcon } from "../../utils/icons";
 import CreateSectorModal from "../../components/Modal/CreateSectorModal";
-import FinishEventModal from "../../components/Modal/FinishEventModal";
 import Navbar from "../../components/Navbar/Navbar";
 
 // react icons
 import { BsExclamationCircle } from "react-icons/bs";
 import { IoReturnUpBack } from "react-icons/io5";
 import { GoCheck } from "react-icons/go";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { api } from "../../utils/utils";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +22,7 @@ import { set } from "date-fns";
 
 const libraries = ["drawing"];
 
-const Event = () => {
+const Event = (props) => {
   const { eventId } = useParams();
   const [map, setMap] = useState(null);
   const [sectorModal, setSectorModal] = useState(false);
@@ -292,9 +291,9 @@ const Event = () => {
               }}
               className="cursor-pointer w-[181px] h-[45px] flex justify-center items-center left-791 top-754 bg-blue-900 shadow-md rounded-lg text-white font-semibold "
             >
-              <button className="mr-3 flex justify-center items-center">
+              <Link to={`/finish/${eventId}`}><button className="mr-3 flex justify-center items-center">
                 <GoCheck size={25} /> <span className="ml-3">Finish</span>
-              </button>
+              </button></Link>
             </div>
           </div>
         </div>
@@ -307,10 +306,6 @@ const Event = () => {
         data={newSectorData}
         open={sectorModal}
         onClose={() => setSectorModal(false)}
-      />
-      <FinishEventModal
-        open={finishModal}
-        onClose={() => setFinishModal(false)}
       />
     </>
   );
