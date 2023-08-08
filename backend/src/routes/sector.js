@@ -111,16 +111,42 @@ router
     }
   });
 
-  router.post("/assign-members", async (req, res)=>{
-    //body 
-    /*
+router.post("/assign-members", async (req, res) => {
+  const schema = joi.object({
+    sectorId: joi.string().required(),
+    type: joi.number().required().valid(0, 1, 2, 3), // 0 = ISH, 1 = SI, 2 = CPO, 3 = ICPO
+    coordinates: joi.object({
+      lat: joi.number().required(),
+      lon: joi.number().required(),
+    }),
+  });
 
-    {
-      type: 0,                 // 0 = ISH, 1 = SI, 2 = CPO, 3 = ICPO
-      coordinates: {lat: "", lon: ""},         // coordinates of the point
+  try {
+    const data = await schema.validateAsync(req.body);
+
+    const sector = await SectorModel.findOneAndUpdate(
+      {
+        _id: data.sectorId,
+      },
+      {
+        $push: {
+          members: {
+            type: data.type,
+            coordinates: data.coordinates,
+          },
+        },
+      }
+    );
+
+    if (!sector) {
+      return res.status(404).json({ error: "Sector not found" });
     }
 
-    */
-  })
+    res.json(sector);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 export default router;

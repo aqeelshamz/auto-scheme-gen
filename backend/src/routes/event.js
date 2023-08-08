@@ -214,7 +214,7 @@ router
   //EVENT MEMBERS DATA
   // Get Event members data
   router.post("/members", async (req, res) => {
-    //body - eventId
+    //body - eventId 
     // const event = await Event.findById();
     // const sectors = await Sector.find({ eventId: event._id });
 
