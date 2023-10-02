@@ -17,15 +17,14 @@ router
     });
 
     try {
-      const { eventId, name, color, data, type } = await schema.validateAsync(
-        req.body
-      );
+      const { eventId, name, color, data, type, members } = req.body;
       const sector = new SectorModel({
-        eventId,
         name,
         color,
-        data,
         type,
+        members,
+        data,
+        eventId,
       });
       await sector.save();
       res.status(201).json(sector);

@@ -6,12 +6,12 @@ import validate from "../util/userValidate.js";
 import joi from "joi";
 import moment from "moment";
 import sampleData from "../util/sampleData.js";
-import Sector from "../models/sectorModel.js";
+import SectorModel from "../models/sectorModel.js";
 
 const router = express.Router();
 
 // Use /sectors as a sub route.
-router.use("/sectors", sectorRoutes);
+router.use("/sector", sectorRoutes);
 
 // Get events sample
 router
@@ -78,6 +78,7 @@ router
         type,
         members,
       });
+      
 
       await event.save();
       res.json(event);
@@ -209,14 +210,29 @@ router
       console.error(err);
       res.status(500).json({ error: "Internal server error" });
     }
-  });
+  })
 
-  //EVENT MEMBERS DATA
-  // Get Event members data
-  router.post("/members", async (req, res) => {
-    //body - eventId 
-    // const event = await Event.findById();
-    // const sectors = await Sector.find({ eventId: event._id });
+  .post("/members", async (req, res) => {
+    const event = await EventModel.findById(req.body.eventId);
+    const sectors = await SectorModel.find({ eventId: req.body.eventId }).populate("members");
+
+
+    var data = {
+      name: event.name,
+      date: event.startDate.toDateString() + " - " + event.endDate.toDateString(),
+      sectors: sectors.map((sector) => {
+        return {
+          sectorName: sector.name,
+          members: sector.members.map((member) => {
+            console.log(member);
+            return member
+          }),
+        };
+      }),
+    }
+
+
+    res.json(data)
 
     // var membersData = {
     //   SI: 0,
@@ -268,6 +284,6 @@ router
   // Generate excel
   .post("/members/excel", async (req, res) => {
     //body - eventId
-  })
+  });
 
 export default router;
