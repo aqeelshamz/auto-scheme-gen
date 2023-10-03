@@ -126,21 +126,13 @@ function Home() {
 							{recentData
 								.filter((item) => {
 									if (search === "") return item;
-									else if (
-										item.name
-											.toLowerCase()
-											.includes(search.toLowerCase())
-									)
-										return item;
+									else if (item.name.toLowerCase().includes(search.toLowerCase())) return item;
 								})
 								.map((item, index) => (
 									<EventCard
 										style={{
 											color: item.color,
-											backgroundColor: hexToRgba(
-												item.color,
-												0.2
-											),
+											backgroundColor: hexToRgba(item.color, 0.2),
 										}}
 										key={index}
 										title={item.name}
@@ -164,21 +156,13 @@ function Home() {
 							{data
 								.filter((item) => {
 									if (search === "") return item;
-									else if (
-										item.name
-											.toLowerCase()
-											.includes(search.toLowerCase())
-									)
-										return item;
+									else if (item.name.toLowerCase().includes(search.toLowerCase())) return item;
 								})
 								.map((item, index) => (
 									<EventCard
 										style={{
 											color: item.color,
-											backgroundColor: hexToRgba(
-												item.color,
-												0.18
-											),
+											backgroundColor: hexToRgba(item.color, 0.18),
 										}}
 										key={index}
 										title={item.name}
